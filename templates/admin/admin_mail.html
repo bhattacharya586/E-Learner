@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="zxx" class="no-js">
+
+<head>
+    <!-- Mobile Specific Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="img/fav.png">
+    <!-- Author Meta -->
+    <meta name="author" content="colorlib">
+    <!-- Meta Description -->
+    <meta name="description" content="">
+    <!-- Meta Keyword -->
+    <meta name="keywords" content="">
+    <!-- meta character set -->
+    <meta charset="UTF-8">
+    <!-- Site Title -->
+    <title>Personal</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Amaranth:wght@700&family=Bree+Serif&family=Bungee&family=Do+Hyeon&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Bebas+Neue|Righteous&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+
+    <!--
+        CSS
+        ============================================= -->
+
+
+
+
+
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/linearicons.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/magnific-popup.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/jquery-ui.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/nice-select.css') }}">
+
+
+    <script src="{{ url_for('static', filename='js/vendor/jquery-2.2.4.min.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='owlcarousel/owl.theme.default.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='owlcarousel/owl.carousel.min.css') }}">
+    <script src="{{ url_for('static', filename='owlcarousel/owl.carousel.min.js') }}"></script>
+
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/animate.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='special/special_css.css') }}">
+
+    <style>
+        .owl-item {
+            background-color: white;
+        }
+
+        .accordion {
+            background-color: #eee;
+            color: #444;
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 15px;
+            transition: 0.4s;
+        }
+
+        .active,
+        .accordion:hover {
+            background-color: #ccc;
+        }
+
+        .accordion:after {
+            content: '\002B';
+            color: #777;
+            font-weight: bold;
+            float: right;
+            margin-left: 5px;
+        }
+
+        .active:after {
+            content: "\2212";
+        }
+
+        .panel {
+            padding: 0 18px;
+            background-color: white;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.2s ease-out;
+        }
+
+        .shadow {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+
+        .links-child {
+            margin-left: 1rem;
+        }
+
+        .centered {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .wrapper {
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cmd {
+            position: relative;
+            display: block;
+
+            height: 600px;
+            width: 100%;
+            border: 1px solid #000000;
+            border-radius: 4px;
+            overflow: hidden;
+
+            box-shadow: 0px 8px 18px #4b1d3f;
+        }
+
+        /*
+ * 1. Set position
+ * 2. Set dimension
+ * 3. Style
+ */
+        .title-bar {
+            /* 1 */
+            position: absolute;
+            top: 0;
+            left: 0;
+            padding: 10px 10px;
+            right: 0;
+            /* 2 */
+            height: 40px;
+            /* 3 */
+            display: block;
+            color: #FFFFFF;
+            line-height: 40px;
+            font-weight: 600;
+            background-color: #242424;
+            text-align: center;
+        }
+
+        .tool-bar {
+            position: absolute;
+            top: 40px;
+            left: 0;
+            right: 0;
+            display: block;
+            height: 30px;
+            line-height: 30px;
+            background-color: #242424;
+        }
+
+        .tool-bar ul {
+            list-style-type: none;
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .tool-bar ul li {
+            display: inline-block;
+            margin: 0;
+            padding: 0;
+        }
+
+        .tool-bar ul li a {
+            padding: 0px 6px;
+            text-decoration: none;
+            color: #FFFFFF;
+        }
+
+        .tool-bar ul li a:hover {
+            text-decoration: underline;
+        }
+
+        .textarea {
+            position: relative;
+            top: 70px;
+            padding: 12px;
+            resize: none;
+            width: 100%;
+            height: calc(100% - 70px);
+            background: #aa4b6b;
+            /* fallback for old browsers */
+            background: -webkit-linear-gradient(to right, #3b8d99, #6b6b83, #aa4b6b);
+            /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to right, #3b8d99, #6b6b83, #aa4b6b);
+            /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+            /*4b1d3f*/
+            border: none;
+            color: #FFFFFF;
+            margin: 0px;
+            font-size: 1.1rem;
+        }
+
+        .special {
+            background: none !important;
+            border: none;
+            outline: none;
+            padding: 0px 6px;
+            text-decoration: none;
+            color: white;
+            cursor: pointer;
+        }
+
+        .special:hover {
+            text-decoration: underline;
+        }
+
+        #tempo {
+            background-color: transparent;
+            border: none;
+            outline: none;
+            color: white;
+            padding: 0px 6px;
+            width: 50%;
+            text-align: center;
+        }
+
+        ::placeholder {
+            /* Chrome, Firefox, Opera, Safari 10.1+ */
+            color: white;
+            font-weight: 900;
+            font-size: 1.1rem;
+            opacity: 1;
+            /* Firefox */
+        }
+
+        :-ms-input-placeholder {
+            /* Internet Explorer 10-11 */
+            color: white;
+        }
+
+        ::-ms-input-placeholder {
+            /* Microsoft Edge */
+            color: white;
+        }
+
+        #nav-ask {
+            display: none;
+        }
+    </style>
+    <script>
+
+        $(document).ready(function () {
+            $(".owl-carousel").owlCarousel({
+                smartSpeed: 450,
+                loop: true,
+                margin: 10,
+                nav: false,
+                dots: false,
+                responsiveClass: true,
+                responsive: {
+                    0: {
+                        items: 1,
+                        nav: false
+                    },
+                    600: {
+                        items: 2,
+                        nav: false
+                    },
+                    1000: {
+                        items: 4,
+                        nav: false,
+                        loop: false
+                    }
+                }
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div id="nav-ask" class="nav-ask">
+        <h1 class="text-dark text-center" style="font-size: 100px;
+                margin-top: 20rem;">loading</h1>
+    </div>
+    <header id="header" class="">
+        <div class="container main-menu">
+            <div class="row align-items-center justify-content-between d-flex">
+                <div id="logo">
+                    <a href="index.html" style="font-size: 30px;"><strong>GEU-Terminal</strong></a>
+                </div>
+                <nav id="nav-menu-container">
+                    <ul class="nav-menu">
+                        <li><a href="index.html">Dashboard</a></li>
+                        <li class="menu-has-children"><a href="#">Upload</a>
+                            <ul>
+                                <li><a href="blog-home.html">Theory Content</a>
+                                    <ul>
+                                        <li><a href="#">Upload Theory Content</a></li>
+                                        <li><a href="#">Edit Theory Content</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="blog-single.html">Video Content</a>
+                                    <ul>
+                                        <li><a href="#">Upload Video Content</a></li>
+                                        <li><a href="#">Edit Video Content</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="blog-single.html">Assignments</a>
+                                    <ul>
+                                        <li><a href="#">Upload Assignments</a></li>
+                                        <li><a href="#">Edit Assignments</a></li>
+                                    </ul>
+                                </li>
+                                <li class="menu-has-children"><a href="#">Blogs</a>
+                                    <ul>
+                                        <li><a href="#">Upload Blogs</a></li>
+                                        <li><a href="#">Edit Blogs</a></li>
+                                    </ul>
+                                </li>
+                                <li class="menu-has-children"><a href="#">Datasets</a>
+                                    <ul>
+                                        <li><a href="#">Upload Datasets</a></li>
+                                        <li><a href="#">Edit Datasets</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="menu-has-children"><a href="#">Graphs</a>
+                            <ul>
+                                <li><a href="blog-home.html">Performance Visuals</a></li>
+                                <li><a href="blog-single.html">Assignments Visuals</a></li>
+                                <li><a href="blog-single.html">Job Visuals</a></li>
+                            </ul>
+                        </li>
+                        <li class="menu-has-children"><a href="#">Projects</a>
+                            <ul>
+                                <li><a href="blog-home.html">Career</a>
+                                    <ul>
+                                        <li><a href="#">Check Resume</a></li>
+                                        <li><a href="#">Interview Schedules</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="blog-single.html">Library</a>
+                                    <ul>
+                                        <li><a href="#">Edit e-books</a></li>
+                                        <li><a href="#">Library Record</a></li>
+                                        <li><a href="#">Upload New Books</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="blog-single.html">Report Cards</a>
+                                    <ul>
+                                        <li><a href="#">Of Recruits</a></li>
+                                        <li><a href="#">Of Students</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a href="price.html">Databases</a>
+                            <ul>
+                                <li><a href="#">Students Performance</a></li>
+                                <li><a href="#">Students Assignments</a></li>
+                                <li><a href="#">Employers Information</a></li>
+                                <li><a href="#">Student Information</a></li>
+                                <li><a href="#">Student Login Information</a></li>
+                                <li><a href="#">Employers Login Information</a></li>
+                                <li><a href="#">Videos</a></li>
+                                <li><a href="#">Theory</a></li>
+                                <li><a href="#">Comments</a></li>
+                                <li><a href="#">Whatsapp Messages</a></li>
+                            </ul>
+                        </li>
+
+                        <li><a href="contact.html">Mails</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav><!-- #nav-menu-container -->
+            </div>
+        </div>
+    </header><!-- #header -->
+
+
+    <div class="container-fluid mb-5 " id="hidebeta" style="margin-top: 6rem;">
+
+        <div class="row">
+            <div class="col-lg-12 mb-5">
+                <!--font-family: 'Do Hyeon', sans-serif;
+                font-family: 'Bree Serif', serif;
+                font-family: 'Abril Fatface', cursive;
+                font-family: 'Amaranth', sans-serif;
+                font-family: 'Bungee', cursive;-->
+                <h1 class="text-center" style="font-family: 'Bungee', cursive;">
+                    <u style="color: black;">Write The Mail</u>
+                </h1>
+            </div>
+        </div>
+        <div class="row hidebeta">
+            <div class="col-lg-3">
+                <div class="card shadow">
+                    <div class="card-body">
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+
+                <div class="card shadow" style="border-radius: 25px;
+                                            border-right: 4px solid royalblue;
+                                            border-bottom: 4px solid royalblue;">
+                    <div class="card-body p-5">
+                        <h3 class="text-center" style="font-family: 'Do Hyeon', sans-serif;">
+                            Enter Details and Contents
+                        </h3>
+                        <form method="POST" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <label for="recieve">Receiver Address</label>
+                                <input type="text" class="form-control" name="recieve" id="recieve" value="{{mail}}"
+                                    disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="subject">Enter the Subject</label>
+                                <input type="text" class="form-control" name="subject" id="subject">
+                            </div>
+                            <div class="form-group">
+                                <label for="content">Body</label>
+                                <textarea style="height: 250px;resize: none;" name="content" class="form-control"
+                                    id="content" rows="3"></textarea>
+                            </div>
+                            <button type="button" onclick="sendEmail()" style="float: right;"
+                                class="btn btn-primary text-right">Upload</button>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="card shadow">
+                    <div class="card-body">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-5 hidebeta">
+            <div class="col-lg-12 mb-5">
+                <!--font-family: 'Do Hyeon', sans-serif;
+                font-family: 'Bree Serif', serif;
+                font-family: 'Abril Fatface', cursive;
+                font-family: 'Amaranth', sans-serif;
+                font-family: 'Bungee', cursive;-->
+                <h1 class="text-center" style="font-family: 'Bungee', cursive;">
+                    <u style="color: black;">Previous Contents</u>
+                </h1>
+            </div>
+        </div>
+        <div class="row hidebeta">
+            <div class="col-lg-12">
+                <div class="owl-carousel owl-loaded owl-drag">
+                    <div class="owl-stage-outer">
+                        <div class="owl-stage" style="">
+                            <div class="owl-item active" style="padding: 10px 10px;background-color: white;">
+                                <div class="card shadow">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-lg-3">
+                                                <img src="https://avatars1.githubusercontent.com/u/41885111?s=460&v=4"
+                                                    style="border-radius: 50%;" class="  img-fluid">
+                                            </div>
+                                            <div class="col-lg-9">
+                                                <h2 class="text-left">Topic: of the the blogs</h2><br>
+                                                <h6 class="text-muted">Aniruddha Bhattacharya</h6>
+                                                <p class="text-muted p-2">Lorem ipsum dolor, sit amet consectetur
+                                                    adipisicing elit. Laudantium eius dolores libero ullam aspernatur ab
+                                                    saepe inventore tempora accusamus quis excepturi ea soluta minima,
+                                                    odio provident? Incidunt necessitatibus pariatur optio.</p>
+                                                <p class="text-right">Date:17-02-2020</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="owl-item" style="padding: 10px 10px; background-color: white;">
+                                <div class="card shadow">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-lg-3">
+                                                <img src="https://avatars1.githubusercontent.com/u/41885111?s=460&v=4"
+                                                    style="border-radius: 50%;" class="  img-fluid">
+                                            </div>
+                                            <div class="col-lg-9">
+                                                <h2 class="text-left">Topic: of the the blogs</h2><br>
+                                                <h6 class="text-muted">Aniruddha Bhattacharya</h6>
+                                                <p class="text-muted p-2">Lorem ipsum dolor, sit amet consectetur
+                                                    adipisicing elit. Laudantium eius dolores libero ullam aspernatur ab
+                                                    saepe inventore tempora accusamus quis excepturi ea soluta minima,
+                                                    odio provident? Incidunt necessitatibus pariatur optio.</p>
+                                                <p class="text-right">Date:17-02-2020</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="owl-item" style="padding: 10px 10px; background-color: white;">
+                                <div class="card shadow">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-lg-3">
+                                                <img src="https://avatars1.githubusercontent.com/u/41885111?s=460&v=4"
+                                                    style="border-radius: 50%;" class="  img-fluid">
+                                            </div>
+                                            <div class="col-lg-9">
+                                                <h2 class="text-left">Topic: of the the blogs</h2><br>
+                                                <h6 class="text-muted">Aniruddha Bhattacharya</h6>
+                                                <p class="text-muted p-2">Lorem ipsum dolor, sit amet consectetur
+                                                    adipisicing elit. Laudantium eius dolores libero ullam aspernatur ab
+                                                    saepe inventore tempora accusamus quis excepturi ea soluta minima,
+                                                    odio provident? Incidunt necessitatibus pariatur optio.</p>
+                                                <p class="text-right">Date:17-02-2020</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="owl-item" style="padding: 10px 10px; background-color: white;">
+                                <div class="card shadow">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-lg-3">
+                                                <img src="https://avatars1.githubusercontent.com/u/41885111?s=460&v=4"
+                                                    style="border-radius: 50%;" class="  img-fluid">
+                                            </div>
+                                            <div class="col-lg-9">
+                                                <h2 class="text-left">Topic: of the the blogs</h2><br>
+                                                <h6 class="text-muted">Aniruddha Bhattacharya</h6>
+                                                <p class="text-muted p-2">Lorem ipsum dolor, sit amet consectetur
+                                                    adipisicing elit. Laudantium eius dolores libero ullam aspernatur ab
+                                                    saepe inventore tempora accusamus quis excepturi ea soluta minima,
+                                                    odio provident? Incidunt necessitatibus pariatur optio.</p>
+                                                <p class="text-right">Date:17-02-2020</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <footer class="footer bg-primary text-white p-5 " id="hidebeta1">
+        <div class="footer_top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-4 col-md-6 col-lg-4 ">
+                        <div class="footer_widget">
+                            <h3 class="footer_title text-white">
+                                Address
+                            </h3>
+                            <div class="footer_logo">
+                                <a href="#">
+                                    <!--<img src="img/footer_logo.png" alt="">-->
+                                </a>
+                            </div>
+
+                            <p>Indra Niwas, Bell Road, Near Graphic Era deemed to be University, Dehradun <br>
+                                <a href="#" class="text-white">+91 7983648067</a> <br>
+                                <a href="#" class="text-white">amazonaniruddha123@gmail.com</a>
+                            </p>
+
+
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-md-6 col-lg-2">
+                        <div class="footer_widget">
+                            <h3 class="footer_title text-white">
+                                Company
+                            </h3>
+
+                            <ul class="links">
+                                <br>
+                                <li><a href="#" class="text-white"><i class="fa fa-bullseye" aria-hidden="true"></i>
+                                        Dashboard</a></li>
+                                <li><a href="#" class="text-white"><i class="fa fa-bullseye" aria-hidden="true"></i>
+                                        Upload</a>
+                                    <ul class="links-child">
+                                        <li><a href="#" class="text-white"><i class="fa fa-long-arrow-right"
+                                                    aria-hidden="true"></i> Theory Content</a></li>
+                                        <li><a href="#" class="text-white"><i class="fa fa-long-arrow-right"
+                                                    aria-hidden="true"></i> Video Content</a></li>
+                                        <li><a href="#" class="text-white"><i class="fa fa-long-arrow-right"
+                                                    aria-hidden="true"></i> Assignments</a></li>
+                                        <li><a href="#" class="text-white"><i class="fa fa-long-arrow-right"
+                                                    aria-hidden="true"></i> Blogs</a></li>
+                                        <li><a href="#" class="text-white"><i class="fa fa-long-arrow-right"
+                                                    aria-hidden="true"></i> Datasets</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#" class="text-white"><i class="fa fa-bullseye" aria-hidden="true"></i>
+                                        Graphs</a>
+                                    <ul class="links-child">
+                                        <li><a href="#" class="text-white"><i class="fa fa-long-arrow-right"
+                                                    aria-hidden="true"></i> Performance Visuals</a></li>
+                                        <li><a href="#" class="text-white"><i class="fa fa-long-arrow-right"
+                                                    aria-hidden="true"></i> Assignments Visuals</a></li>
+                                        <li><a href="#" class="text-white"><i class="fa fa-long-arrow-right"
+                                                    aria-hidden="true"></i> Job Visuals</a></li>
+                                    </ul>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6 col-lg-3">
+                        <div class="footer_widget">
+                            <h3 class="footer_title text-white">
+                                Popular destination
+                            </h3>
+                            <ul class="links double_links"><br>
+                                <li><a href="#" class="text-white"><i class="fa fa-bullseye" aria-hidden="true"></i>
+                                        Projects</a>
+                                    <ul class="links-child">
+                                        <li><a href="#" class="text-white"><i class="fa fa-long-arrow-right"
+                                                    aria-hidden="true"></i>
+                                                Career</a></li>
+                                        <li><a href="#" class="text-white"><i class="fa fa-long-arrow-right"
+                                                    aria-hidden="true"></i>
+                                                Library</a></li>
+                                        <li><a href="#" class="text-white"><i class="fa fa-long-arrow-right"
+                                                    aria-hidden="true"></i>
+                                                Report Cards</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#" class="text-white"><i class="fa fa-bullseye" aria-hidden="true"></i>
+
+                                        Databases</a></li>
+                                <li><a href="#" class="text-white"><i class="fa fa-bullseye" aria-hidden="true"></i>
+
+                                        Mails</a></li>
+                                <li><a href="#" class="text-white"><i class="fa fa-bullseye" aria-hidden="true"></i>
+
+                                        Contact</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6 col-lg-3">
+                        <div class="footer_widget">
+                            <h3 class="footer_title text-white">
+                                Project Images
+                            </h3>
+                            <div class="instagram_feed">
+                                <div class="single_insta">
+                                    <a href="#">
+                                        <!--<img src="img/instagram/1.png" alt="">-->
+                                    </a>
+                                </div>
+                                <div class="single_insta">
+                                    <a href="#">
+                                        <!--<img src="img/instagram/1.png" alt="">-->
+                                    </a>
+                                </div>
+                                <div class="single_insta">
+                                    <a href="#">
+                                        <!--<img src="img/instagram/1.png" alt="">-->
+                                    </a>
+                                </div>
+                                <div class="single_insta">
+                                    <a href="#">
+                                        <!--<img src="img/instagram/1.png" alt="">-->
+                                    </a>
+                                </div>
+                                <div class="single_insta">
+                                    <a href="#">
+                                        <!--<img src="img/instagram/1.png" alt="">-->
+                                    </a>
+                                </div>
+                                <div class="single_insta">
+                                    <a href="#">
+                                        <!--<img src="img/instagram/1.png" alt="">-->
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br><br>
+        <div class="copy-right_text bg-info p-5">
+            <div class="container">
+                <div class="footer_border"></div>
+                <div class="row">
+                    <div class="col-xl-12">
+                        <p class="copy_right text-center">
+                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                            Copyright ©
+                            <script>document.write(new Date().getFullYear());</script>2020 All rights reserved | This
+                            template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="#"
+                                target="_blank" class="text-white">Aniruddha</a>
+                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script>
+        function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+        function sendEmail(top) {
+
+            Email.send({
+                Host: "smtp.gmail.com",
+                Username: "amazonaniruddha123@gmail.com",
+                Password: "7983648067",
+                To: "coolsamrat586@gmail.com",
+                From: "amazonaniruddha123@gmail.com",
+                Subject: "subject",
+                Body: "content"
+            }).then(
+                message => location.replace('/upload-video-handler/success')
+
+            );
+
+        }
+    </script>
+    <!-- End footer Area -->
+    <script src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/vendor/bootstrap.min.js') }}"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>
+    <script src="{{ url_for('static', filename='js/easing.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/hoverIntent.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/superfish.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.ajaxchimp.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.magnific-popup.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.tabs.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.nice-select.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/isotope.pkgd.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/waypoints.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.counterup.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/simple-skillbar.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/mail-script.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+
+</body>
+
+</html>

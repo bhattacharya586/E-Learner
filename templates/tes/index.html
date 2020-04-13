@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <title>Hello, world!</title>
+    <style>
+        .option-arti{
+            padding: 10px 10px;
+        }
+    </style>
+    <script type="text/javascript">
+        document.addEventListener("dblclick", () => {
+            document.documentElement.requestFullscreen().catch((e) => {
+                console.log(e);
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        function timeout() {
+            var minute = Math.floor(timeLeft / 60);
+            var second = timeLeft % 60;
+            var mint = checktime(minute);
+            var sec = checktime(second);
+            if (timeLeft <= 0) {
+                clearTimeout(tm);
+                document.getElementById("reg").submit();
+            }
+            else {
+                document.getElementById("time").innerHTML = mint + ":" + sec;
+            }
+            timeLeft--;
+            var tm = setTimeout(function () { timeout() }, 1000);
+        }
+        function checktime(msg) {
+            if (msg < 10) {
+                msg = "0" + msg;
+            }
+            return msg;
+        }
+    </script>
+
+
+</head>
+
+<body onload="timeout()" onkeydown="return showKeyCode(event)">
+    <!-- Image and text -->
+    <nav class="navbar navbar-expand-sm sticky-top navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand text-black" href="#">
+                <span style="font-size: 30px;"><strong>GEU-Terminal</strong></span>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+    
+            <div class="collapse navbar-collapse"></div>
+    
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link">
+                           <h4 id="time" style="text-align: center;color: blue">
+                            <script type="text/javascript">
+                              var timeLeft=60*30;</script>
+                            </h4>
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container mt-5 mb-5">
+        <div class="row">
+            <div class="col-lg-8">
+                <form action="/testsol" method="POST" enctype="multipart/form-data">
+                    <input type="hidden" name="name" value="coolsadsadadmrat586@gmail.com">
+                    <input type="hidden" name="subject" value="cloud-computing">
+                    {% for i in range(1,lengu) %}
+                        <div class="card shadow-lg mt-5 mb-2">
+                            <input type="hidden" name="question{{i}}" value="{{ questions[i] }}">
+                            <div class="card-body">
+                                <h5 class="text-justify text-primary">
+                                    <strong>Q{{ i }}:) {{ questions[i] }}.</strong>
+                                </h5>
+                                <div class="option-arti text-justify ">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="solution-{{i}}" id="gridRadios1" value="{{ optionA[i] }}"
+                                            onclick="changecolor('rad{{i}}')">
+                                        <label class="form-check-label" for="gridRadios1">{{ optionA[i] }}.
+                                        </label>
+                                    </div>
+                        
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="solution-{{i}}" id="gridRadios2" onclick="changecolor('rad{{i}}')" value="{{ optionB[i] }}">
+                                        <label class="form-check-label" for="inlineRadio1">{{ optionB[i] }}.</label>
+                                    </div>
+                        
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="solution-{{i}}" id="gridRadios3" onclick="changecolor('rad{{i}}')" value="{{ optionC[i] }}">
+                                        <label class="form-check-label" for="inlineRadio1">{{ optionC[i] }}.</label>
+                                    </div>
+                        
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="solution-{{i}}" id="gridRadios4" onclick="changecolor('rad{{i}}')" value="{{ optionD[i] }}">
+                                        <label class="form-check-label" for="inlineRadio1">{{ optionD[i] }}.</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <script>
+                            function changecolor(param) {
+                                var matches = param.match(/(\d+)/); 
+                                var element = document.getElementById('btn' + matches[0]);
+                                element.style.backgroundColor = '#155724';
+                                element.style.color = 'white';
+                            }    
+                        </script>
+                    {% endfor %}
+            </div>
+            <div class="col-lg-4" style="position: fixed;right: 0;">
+                <h4 class="text-center"><strong>NAVIGATION</strong></h4>
+                <div class="padder text-center" style="padding: 10px 10px;">
+                    {% for i in range(1,lengu) %}
+                        <button type="button" onclick="openFullscreen();" class="mt-2 mb-2 ml-2 mr-2 btn spn" style="width: 50px; 
+                        height: 50px; 
+                        padding: 7px 10px; 
+                        border-radius: 25px; 
+                        background-color: #cce5ff;
+                        color: #004085;
+                        text-align: center;" id="btn{{i}}"><strong>{{ i }}</strong></button>
+                    {% endfor %}
+                </div>
+                <h6 class="text-justify text-info">
+                    <span class="badge badge-pill badge-danger" style="padding: 10px 40px;">Date</span>
+                    <span class="text-right" style="float: right;" id="demodate"></span>
+                </h6>
+                <script>
+                    var today = new Date();
+                        var dd = String(today.getDate()).padStart(2, '0');
+                        var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+                        var mm = (months[today.getMonth()]);
+                        var yyyy = today.getFullYear();
+
+                        var td = mm + '-' + dd + '-' + yyyy;
+                        document.getElementById('demodate').innerHTML = td;
+                </script>
+                <h6 class="text-center text-info">Marker Meanings</h6>
+                <p class="text-justify">
+                    <span class="badge badge-pill" style="background-color: #cce5ff;padding: 10px 50px;">x</span>
+                     <span class="text-right" style="float: right;">Un-Touched Questions</span>
+                </p>
+                <p class="text-justify">
+                    <span class="badge badge-pill" style="background-color: #155724;padding: 10px 50px;color: white;">x</span>
+                    <span class="text-right" style="float: right;">Attempted Questions</span>
+                </p>
+                
+                <div class="text-center">
+                    <button type="submit" style="width: 50%;" class="text-center btn btn-primary badge-pill">Submit</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+        <script>
+            $(document).bind('keydown', function (e) {
+                if (e.ctrlKey && (e.which == 82)) {
+                    e.preventDefault();
+                    alert('Alert!!!You will be disqualified');
+                    return false;
+                }
+                if (e.which == 116) {
+                    e.preventDefault();
+                    alert('Alert!!!You will be disqualified');
+                    return false;
+                }
+            });
+        </script>
+        
+</body>
+
+</html>
