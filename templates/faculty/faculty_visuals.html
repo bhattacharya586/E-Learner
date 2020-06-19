@@ -1,0 +1,1350 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>पाठशाला</title>
+    <script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+
+    <!-- Custom fonts for this template-->
+    <link href="{{ url_for('static', filename='vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet"
+        type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+    <script type='text/javascript' src='http://code.jquery.com/jquery.min.js'></script>
+    <script type='text/javascript'>
+        $(function () {
+            $('#searchInput').keyup(function () {
+                if ($(this).val() == '') {
+                    $('.enableinInput').prop('disabled', true);
+                } else {
+                    //If there is text in the input, then enable the button
+                    $('.enableinInput').prop('disabled', false);
+                    $(function () {
+                        $('#enableinInput').keyup(function () {
+                            if ($(this).val() == '') {
+                                $('#qwerty').prop('disabled', true);
+                            } else {
+                                //If there is text in the input, then enable the button
+                                $('#qwerty').prop('disabled', false);
+
+                            }
+                        });
+                    });
+                }
+            });
+        });
+
+    </script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <script src="https://code.highcharts.com/modules/annotations.js"></script>
+    <!-- Custom styles for this template-->
+    <link href="{{ url_for('static', filename='css/sb-admin-2.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='owlcarousel/owl.theme.default.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='owlcarousel/owl.carousel.min.css') }}">
+    <script src="{{ url_for('static', filename='owlcarousel/owl.carousel.min.js') }}"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-app.js"></script>
+    <!-- Add additional services you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-messaging.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-functions.js"></script>
+    <!-- Comment out (or don't include) services you don't want to use -->
+    <script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-storage.js"></script>
+    <style>
+        #qwerty {
+            display: none
+        }
+
+        #qwerty {
+            border: 1px solid #ccc;
+            display: inline-block;
+            padding: 6px 12px;
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        $(document).ready(function () {
+            $(".owl-carousel2").owlCarousel({
+                smartSpeed: 450,
+                loop: true,
+                margin: 10,
+                nav: false,
+                dots: false,
+                responsiveClass: true,
+                responsive: {
+                    0: {
+                        items: 1,
+                        nav: false
+                    },
+                    600: {
+                        items: 2,
+                        nav: false
+                    },
+                    1000: {
+                        items: 2,
+                        nav: false,
+                        loop: false
+                    }
+                }
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $(".owl-carousel").owlCarousel({
+                smartSpeed: 450,
+                loop: true,
+                margin: 10,
+                nav: false,
+                dots: false,
+                responsiveClass: true,
+                responsive: {
+                    0: {
+                        items: 1,
+                        nav: false
+                    },
+                    600: {
+                        items: 2,
+                        nav: false
+                    },
+                    1000: {
+                        items: 3,
+                        nav: false,
+                        loop: false
+                    }
+                }
+            });
+        });
+    </script>
+    <style>
+        .highcharts-figure,
+        .highcharts-data-table table {
+            min-width: 310px;
+            max-width: 800px;
+            margin: 1em auto;
+        }
+
+        #container {
+            height: 400px;
+        }
+
+        .highcharts-data-table table {
+            font-family: Verdana, sans-serif;
+            border-collapse: collapse;
+            border: 1px solid #EBEBEB;
+            margin: 10px auto;
+            text-align: center;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .highcharts-data-table caption {
+            padding: 1em 0;
+            font-size: 1.2em;
+            color: palevioletred;
+        }
+
+        .highcharts-data-table th {
+            font-weight: 600;
+            padding: 0.5em;
+        }
+
+        .highcharts-data-table td,
+        .highcharts-data-table th,
+        .highcharts-data-table caption {
+            padding: 0.5em;
+        }
+
+        .highcharts-data-table thead tr,
+        .highcharts-data-table tr:nth-child(even) {
+            background: #f8f8f8;
+        }
+
+        .highcharts-data-table tr:hover {
+            background: #f1f7ff;
+        }
+        
+    </style>
+</head>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <ul class="navbar-nav bg-gradient-danger sidebar sidebar-dark accordion" id="accordionSidebar">
+        
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/faculty-home">
+                <div class="sidebar-brand-icon rotate-n-15">
+                    <i class="fas fa-laugh-wink"></i>
+                </div>
+                <div class="sidebar-brand-text mx-3"><strong>पाठशाला</strong></div>
+            </a>
+        
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+        
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item active">
+                <a class="nav-link" href="/faculty-home">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Dashboard</span></a>
+            </li>
+            <!-- Divider -->
+            <!-- Heading -->
+            <hr class="sidebar-divider">
+            <div>
+                <div class="sidebar-heading">
+                    Uploads
+                </div>
+                <!-- Nav Item - Pages Collapse Menu -->
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                        aria-expanded="true" aria-controls="collapseTwo">
+                        <i class="fas fa-fw fa-sticky-note"></i>
+                        <span>Theory Content</span>
+                    </a>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <h6 class="collapse-header">Theory Contents:</h6>
+                            <a class="collapse-item" href="/faculty_intermediate/theoryupload">Upload</a>
+        
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseX" aria-expanded="true"
+                        aria-controls="collapseX">
+                        <i class="fas fa-fw fa-video"></i>
+                        <span>Video Content</span>
+                    </a>
+                    <div id="collapseX" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <h6 class="collapse-header">Video Contents:</h6>
+                            <a class="collapse-item" href="/faculty_intermediate/videoupload">Upload</a>
+        
+                        </div>
+                    </div>
+                </li>
+                <!--
+                                        <li class="nav-item">
+                                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseZ" aria-expanded="true"
+                                                aria-controls="collapseZ">
+                                                <i class="fas fa-fw fa-user"></i>
+                                                <span>Blogs</span>
+                                            </a>
+                                            <div id="collapseZ" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                                                <div class="bg-white py-2 collapse-inner rounded">
+                                                    <h6 class="collapse-header">Blogs:</h6>
+                                                    <a class="collapse-item" href="/upload-blogs">Upload</a>
+                                                    <a class="collapse-item" href="cards.html">Edit</a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    -->
+            </div>
+            <!-- Ending -->
+            <!-- Heading -->
+            <hr class="sidebar-divider">
+            <div>
+                <div class="sidebar-heading">
+                    Graphs
+                </div>
+                <!-- Nav Item - Pages Collapse Menu -->
+                <li class="nav-item">
+                    <a class="nav-link" href="/faculty-visuals">
+                        <i class="fas fa-fw fa-chart-area"></i>
+                        <span>Performance Visuals</span></a>
+                </li>
+                <!--
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="charts.html">
+                                                <i class="fas fa-fw fa-chart-area"></i>
+                                                <span>Job Visuals</span></a>
+                                        </li>
+                                        -->
+            </div>
+            <!-- Ending -->
+            <!-- Heading -->
+            <!--
+                                    <div>
+                                        <div class="sidebar-heading">
+                                            Projects
+                                        </div>
+                                        <li class="nav-item">
+                                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseA" aria-expanded="true"
+                                                aria-controls="collapseA">
+                                                <i class="fas fa-fw fa-sticky-note"></i>
+                                                <span>Career</span>
+                                            </a>
+                                            <div id="collapseA" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                                                <div class="bg-white py-2 collapse-inner rounded">
+                                                    <h6 class="collapse-header">Career</h6>
+                                                    <a class="collapse-item" href="buttons.html">Check Resume</a>
+                                                    <a class="collapse-item" href="cards.html">Interview Schedules</a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseB" aria-expanded="true"
+                                                aria-controls="collapseB">
+                                                <i class="fas fa-fw fa-video"></i>
+                                                <span>Library</span>
+                                            </a>
+                                            <div id="collapseB" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                                                <div class="bg-white py-2 collapse-inner rounded">
+                                                    <h6 class="collapse-header">Library:</h6>
+                                                    <a class="collapse-item" href="buttons.html">Edit e-books</a>
+                                                    <a class="collapse-item" href="cards.html">Library Record</a>
+                                                    <a class="collapse-item" href="cards.html">Upload New Books</a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseC" aria-expanded="true"
+                                                aria-controls="collapseC">
+                                                <i class="fas fa-fw fa-pen"></i>
+                                                <span>Report Cards</span>
+                                            </a>
+                                            <div id="collapseC" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                                                <div class="bg-white py-2 collapse-inner rounded">
+                                                    <h6 class="collapse-header">Report Cards:</h6>
+                                                    <a class="collapse-item" href="buttons.html">Of Recruits</a>
+                                                    <a class="collapse-item" href="cards.html">Of Students</a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </div>
+                                    -->
+            <!-- Ending -->
+            <!-- Heading -->
+            <hr class="sidebar-divider">
+            <div>
+                <div class="sidebar-heading">
+                    Databases
+                </div>
+                <!-- Nav Item - Pages Collapse Menu 
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class="fas fa-fw fa-chart-area"></i>
+                                <span>Students Performance</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class="fas fa-fw fa-pen"></i>
+                                <span>Students Assignments</span></a>
+                        </li>-->
+        
+                <li class="nav-item">
+                    <a class="nav-link" href="/faculty_opendatabase/studentinformationdatabase">
+                        <i class="fas fa-fw fa-users"></i>
+                        <span>Student Information</span></a>
+                </li>
+                <!--
+                        <li class="nav-item">
+                            <a class="nav-link" href="/opendatabase/studentlogininformationdatabase">
+                                <i class="fas fa-fw fa-chart-area"></i>
+                                <span>Student Login Information</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/opendatabase/employerslogininformationdatabase">
+                                <i class="fas fa-fw fa-chart-area"></i>
+                                <span>Employers Login Information</span></a>
+                        </li>
+                        -->
+                <li class="nav-item">
+                    <a class="nav-link" href="/faculty_opendatabase/videodatabase">
+                        <i class="fas fa-fw fa-video"></i>
+                        <span>Videos</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/faculty_opendatabase/theorydatabase">
+                        <i class="fas fa-fw fa-sticky-note"></i>
+                        <span>Theory</span></a>
+                </li>
+                <!--
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#">
+                                                <i class="fas fa-fw fa-comment"></i>
+                                                <span>Comments</span></a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#">
+                                                <i class="fab fa-fw fa-whatsapp"></i>
+                                                <span>Whatsapp Messages</span></a>
+                                        </li>
+                                        -->
+            </div>
+            <!-- Ending -->
+            <!-- Heading -->
+            <hr class="sidebar-divider">
+            <div>
+                <div class="sidebar-heading">
+                    Mail and Contact
+                </div>
+                <!-- Nav Item - Pages Collapse Menu -->
+                <li class="nav-item">
+                    <a class="nav-link" href="/faculty_mails">
+                        <i class="fas fa-fw fa-envelope"></i>
+                        <span>Mails</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="fas fa-fw fa-phone"></i>
+                        <span>Contact</span></a>
+                </li>
+        
+            </div>
+            <!-- Ending -->
+        
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">
+        
+            <!-- Sidebar Toggler (Sidebar) -->
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
+        
+        </ul>
+        <!-- End of Sidebar -->
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+
+                    <!-- Topbar Search -->
+                    <form
+                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                        <div class="input-group">
+                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                                aria-label="Search" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <button class="btn btn-danger" type="button">
+                                    <i class="fas fa-search fa-sm"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <!-- Topbar Navbar -->
+                    <ul class="navbar-nav ml-auto">
+
+                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+                        <li class="nav-item dropdown no-arrow d-sm-none">
+                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-search fa-fw"></i>
+                            </a>
+                            <!-- Dropdown - Messages -->
+                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                                aria-labelledby="searchDropdown">
+                                <form class="form-inline mr-auto w-100 navbar-search">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control bg-light border-0 small"
+                                            placeholder="Search for..." aria-label="Search"
+                                            aria-describedby="basic-addon2">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-danger" type="button">
+                                                <i class="fas fa-search fa-sm"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </li>
+
+                        <!-- Nav Item - Alerts -->
+                        <li class="nav-item dropdown no-arrow mx-1">
+                            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-bell fa-fw"></i>
+                                <!-- Counter - Alerts -->
+                                <span class="badge badge-danger badge-counter">3+</span>
+                            </a>
+                            <!-- Dropdown - Alerts -->
+                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="alertsDropdown">
+                                <h6 class="dropdown-header">
+                                    Alerts Center
+                                </h6>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="mr-3">
+                                        <div class="icon-circle bg-danger">
+                                            <i class="fas fa-file-alt text-white"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="small text-gray-500">December 12, 2019</div>
+                                        <span class="font-weight-bold">A new monthly report is ready to download!</span>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="mr-3">
+                                        <div class="icon-circle bg-success">
+                                            <i class="fas fa-donate text-white"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="small text-gray-500">December 7, 2019</div>
+                                        $290.29 has been deposited into your account!
+                                    </div>
+                                </a>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="mr-3">
+                                        <div class="icon-circle bg-warning">
+                                            <i class="fas fa-exclamation-triangle text-white"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="small text-gray-500">December 2, 2019</div>
+                                        Spending Alert: We've noticed unusually high spending for your account.
+                                    </div>
+                                </a>
+                                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
+                            </div>
+                        </li>
+
+                        <!-- Nav Item - Messages -->
+                        <li class="nav-item dropdown no-arrow mx-1">
+                            <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-envelope fa-fw"></i>
+                                <!-- Counter - Messages -->
+                                <span class="badge badge-danger badge-counter">7</span>
+                            </a>
+                            <!-- Dropdown - Messages -->
+                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="messagesDropdown">
+                                <h6 class="dropdown-header">
+                                    Message Center
+                                </h6>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="dropdown-list-image mr-3">
+                                        <img class="rounded-circle" src="https://source.unsplash.com/fn_BT9fwg_E/60x60"
+                                            alt="">
+                                        <div class="status-indicator bg-success"></div>
+                                    </div>
+                                    <div class="font-weight-bold">
+                                        <div class="text-truncate">Hi there! I am wondering if you can help me with a
+                                            problem I've been having.</div>
+                                        <div class="small text-gray-500">Emily Fowler · 58m</div>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="dropdown-list-image mr-3">
+                                        <img class="rounded-circle" src="https://source.unsplash.com/AU4VPcFN4LE/60x60"
+                                            alt="">
+                                        <div class="status-indicator"></div>
+                                    </div>
+                                    <div>
+                                        <div class="text-truncate">I have the photos that you ordered last month, how
+                                            would you like them sent to you?</div>
+                                        <div class="small text-gray-500">Jae Chun · 1d</div>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="dropdown-list-image mr-3">
+                                        <img class="rounded-circle" src="https://source.unsplash.com/CS2uCrpNzJY/60x60"
+                                            alt="">
+                                        <div class="status-indicator bg-warning"></div>
+                                    </div>
+                                    <div>
+                                        <div class="text-truncate">Last month's report looks great, I am very happy with
+                                            the progress so far, keep up the good work!</div>
+                                        <div class="small text-gray-500">Morgan Alvarez · 2d</div>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="dropdown-list-image mr-3">
+                                        <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60"
+                                            alt="">
+                                        <div class="status-indicator bg-success"></div>
+                                    </div>
+                                    <div>
+                                        <div class="text-truncate">Am I a good boy? The reason I ask is because someone
+                                            told me that people say this to all dogs, even if they aren't good...</div>
+                                        <div class="small text-gray-500">Chicken the Dog · 2w</div>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
+                            </div>
+                        </li>
+
+                        <div class="topbar-divider d-none d-sm-block"></div>
+
+                        <!-- Nav Item - User Information -->
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ malik["email"] }}</span>
+                                <img class="img-profile rounded-circle"
+                                    src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
+                            </a>
+                            <!-- Dropdown - User Information -->
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Profile
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Settings
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Activity Log
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Logout
+                                </a>
+                            </div>
+                        </li>
+
+                    </ul>
+
+                </nav>
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800">Admin Visuals</h1>
+                        
+                    </div>
+
+                
+
+                    <!-- Content Row -->
+
+                    <div class="row">
+
+                        <!-- Area Chart -->
+                        <div class="col-xl-12 col-lg-12">
+                            <div class="card shadow mb-4">
+                                <!-- Card Header - Dropdown -->
+                                <div
+                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">All Section Combined Graph</h6>
+                                    <div class="dropdown no-arrow">
+                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                            aria-labelledby="dropdownMenuLink">
+                                            <div class="dropdown-header">Dropdown Header:</div>
+                                            <a class="dropdown-item" href="#">Action</a>
+                                            <a class="dropdown-item" href="#">Another action</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="#">Something else here</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Card Body -->
+                                <div class="card-body">
+                                    <figure class="highcharts-figure">
+                                        <div id="sectionA"></div>
+                                        <p class="highcharts-description">
+                                            A basic column chart compares rainfall values between four cities.
+                                            Tokyo has the overall highest amount of rainfall, followed by New York.
+                                            The chart is making use of the axis crosshair feature, to highlight
+                                            months as they are hovered over.
+                                        </p>
+                                    </figure>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-12 col-lg-12">
+                            <div class="card shadow mb-4">
+                                <!-- Card Header - Dropdown -->
+                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">Section A</h6>
+                                    <div class="dropdown no-arrow">
+                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+                                            aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                            aria-labelledby="dropdownMenuLink">
+                                            <div class="dropdown-header">Dropdown Header:</div>
+                                            <a class="dropdown-item" href="#">Action</a>
+                                            <a class="dropdown-item" href="#">Another action</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="#">Something else here</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Card Body -->
+                                <div class="card-body">
+                                    <figure class="highcharts-figure">
+                                        <div id="sectionB"></div>
+                                        <p class="highcharts-description">
+                                            A basic column chart compares rainfall values between four cities.
+                                            Tokyo has the overall highest amount of rainfall, followed by New York.
+                                            The chart is making use of the axis crosshair feature, to highlight
+                                            months as they are hovered over.
+                                        </p>
+                                    </figure>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-12 col-lg-12">
+                            <div class="card shadow mb-4">
+                                <!-- Card Header - Dropdown -->
+                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">Section B</h6>
+                                    <div class="dropdown no-arrow">
+                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+                                            aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                            aria-labelledby="dropdownMenuLink">
+                                            <div class="dropdown-header">Dropdown Header:</div>
+                                            <a class="dropdown-item" href="#">Action</a>
+                                            <a class="dropdown-item" href="#">Another action</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="#">Something else here</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Card Body -->
+                                <div class="card-body">
+                                    <figure class="highcharts-figure">
+                                        <div id="containerA"></div>
+                                        <p class="highcharts-description">
+                                            A basic column chart compares rainfall values between four cities.
+                                            Tokyo has the overall highest amount of rainfall, followed by New York.
+                                            The chart is making use of the axis crosshair feature, to highlight
+                                            months as they are hovered over.
+                                        </p>
+                                    </figure>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-12 col-lg-12">
+                            <div class="card shadow mb-4">
+                                <!-- Card Header - Dropdown -->
+                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">Section C</h6>
+                                    <div class="dropdown no-arrow">
+                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+                                            aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                            aria-labelledby="dropdownMenuLink">
+                                            <div class="dropdown-header">Dropdown Header:</div>
+                                            <a class="dropdown-item" href="#">Action</a>
+                                            <a class="dropdown-item" href="#">Another action</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="#">Something else here</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Card Body -->
+                                <div class="card-body">
+                                    <figure class="highcharts-figure">
+                                        <div id="containerD"></div>
+                                        <p class="highcharts-description">
+                                            A basic column chart compares rainfall values between four cities.
+                                            Tokyo has the overall highest amount of rainfall, followed by New York.
+                                            The chart is making use of the axis crosshair feature, to highlight
+                                            months as they are hovered over.
+                                        </p>
+                                    </figure>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-12 col-lg-12">
+                            <div class="card shadow mb-4">
+                                <!-- Card Header - Dropdown -->
+                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">Section D</h6>
+                                    <div class="dropdown no-arrow">
+                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+                                            aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                            aria-labelledby="dropdownMenuLink">
+                                            <div class="dropdown-header">Dropdown Header:</div>
+                                            <a class="dropdown-item" href="#">Action</a>
+                                            <a class="dropdown-item" href="#">Another action</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="#">Something else here</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Card Body -->
+                                <div class="card-body">
+                                    <figure class="highcharts-figure">
+                                        <div id="containerE"></div>
+                                        <p class="highcharts-description">
+                                            A basic column chart compares rainfall values between four cities.
+                                            Tokyo has the overall highest amount of rainfall, followed by New York.
+                                            The chart is making use of the axis crosshair feature, to highlight
+                                            months as they are hovered over.
+                                        </p>
+                                    </figure>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; पाठशाला 2020</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-danger" href="/logout">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Bootstrap core JavaScript-->
+
+    <script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
+    <!-- Core plugin JavaScript-->
+
+
+    <!-- Custom scripts for all pages-->
+    <script src="{{ url_for('static', filename='js/sb-admin-2.min.js') }}"></script>
+
+    <!-- Page level plugins -->
+    <script src="{{ url_for('static', filename='vendor/chart.js/Chart.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendor/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="{{ url_for('static', filename='js/demo/datatables-demo.js') }}"></script>
+    <!-- Page level custom scripts -->
+    <script src="{{ url_for('static', filename='js/demo/chart-area-demo.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/demo/chart-pie-demo.js') }}"></script>
+    <script>
+        // Data generated from http://www.bikeforums.net/professional-cycling-fans/1113087-2017-tour-de-france-gpx-tcx-files.html
+            var elevationData = {{ kheerB }};
+
+            // Now create the chart
+            Highcharts.chart('containerA', {
+
+                chart: {
+                    type: 'area',
+                    zoomType: 'x',
+                    panning: true,
+                    panKey: 'shift',
+                    scrollablePlotArea: {
+                        minWidth: 600
+                    }
+                },
+
+                caption: {
+                    text: 'This chart uses the Highcharts Annotations feature to place labels at various points of interest. The labels are responsive and will be hidden to avoid overlap on small screens.'
+                },
+
+                title: {
+                    text: 'Graph of the Performance of Section B Students'
+                },
+
+                accessibility: {
+                    description: 'Image description: An annotated line graph illustrates the 8th stage of the 2017 Tour de France cycling race from the start point in Dole to the finish line at Station des Rousses. Altitude is plotted on the Y-axis at increments of 500m and distance is plotted on the X-axis in increments of 25 kilometers. The line graph is interactive, and the user can trace the altitude level at every 100-meter point along the stage. The graph is shaded below the data line to visualize the mountainous altitudes encountered on the 187.5-kilometre stage. The three largest climbs are highlighted at Col de la Joux, Côte de Viry and the final 11.7-kilometer, 6.4% gradient climb to Montée de la Combe de Laisia Les Molunes which peaks at 1200 meters above sea level. The stage passes through the villages of Arbois, Montrond, Bonlieu, Chassal and Saint-Claude along the route.'
+                },
+
+                credits: {
+                    enabled: false
+                },
+
+                annotations: [{
+                    labelOptions: {
+                        backgroundColor: 'rgba(255, 99, 181, 0.5)',
+                        verticalAlign: 'top',
+                        y: 15
+                    }
+                }],
+
+                xAxis: {
+                    labels: {
+                        format: '{value}'
+                    },
+                    minRange: 5,
+                    title: {
+                        text: 'No. of Students'
+                    }
+                },
+
+                yAxis: {
+                    startOnTick: true,
+                    endOnTick: false,
+                    maxPadding: 0.35,
+                    title: {
+                        text: null
+                    },
+                    labels: {
+                        format: '{value} Marks'
+                    }
+                },
+
+                tooltip: {
+                    headerFormat: 'Student No.: {point.x} <br>',
+                    pointFormat: 'Marks: {point.y}',
+                    shared: true
+                },
+
+                legend: {
+                    enabled: false
+                },
+
+                series: [{
+                    accessibility: {
+                        keyboardNavigation: {
+                            enabled: false
+                        }
+                    },
+                    data: elevationData,
+                    lineColor: Highcharts.getOptions().colors[1],
+                    color: Highcharts.getOptions().colors[2],
+                    fillOpacity: 0.5,
+                    name: 'Elevation',
+                    marker: {
+                        enabled: false
+                    },
+                    threshold: null
+                }]
+
+            });
+    </script>
+        <script>
+            // Data generated from http://www.bikeforums.net/professional-cycling-fans/1113087-2017-tour-de-france-gpx-tcx-files.html
+            var elevationData = {{ kheerD }};
+
+            // Now create the chart
+            Highcharts.chart('containerE', {
+
+                chart: {
+                    type: 'area',
+                    zoomType: 'x',
+                    panning: true,
+                    panKey: 'shift',
+                    scrollablePlotArea: {
+                        minWidth: 600
+                    }
+                },
+
+                caption: {
+                    text: 'This chart uses the Highcharts Annotations feature to place labels at various points of interest. The labels are responsive and will be hidden to avoid overlap on small screens.'
+                },
+
+                title: {
+                    text: 'Graph of the Performance of Section D Students'
+                },
+
+                accessibility: {
+                    description: 'Image description: An annotated line graph illustrates the 8th stage of the 2017 Tour de France cycling race from the start point in Dole to the finish line at Station des Rousses. Altitude is plotted on the Y-axis at increments of 500m and distance is plotted on the X-axis in increments of 25 kilometers. The line graph is interactive, and the user can trace the altitude level at every 100-meter point along the stage. The graph is shaded below the data line to visualize the mountainous altitudes encountered on the 187.5-kilometre stage. The three largest climbs are highlighted at Col de la Joux, Côte de Viry and the final 11.7-kilometer, 6.4% gradient climb to Montée de la Combe de Laisia Les Molunes which peaks at 1200 meters above sea level. The stage passes through the villages of Arbois, Montrond, Bonlieu, Chassal and Saint-Claude along the route.'
+                },
+
+                credits: {
+                    enabled: false
+                },
+
+                annotations: [{
+                    labelOptions: {
+                        backgroundColor: 'rgba(255, 99, 181, 0.5)',
+                        verticalAlign: 'top',
+                        y: 15
+                    }
+                }],
+
+                xAxis: {
+                    labels: {
+                        format: '{value}'
+                    },
+                    minRange: 5,
+                    title: {
+                        text: 'No. of Students'
+                    }
+                },
+
+                yAxis: {
+                    startOnTick: true,
+                    endOnTick: false,
+                    maxPadding: 0.35,
+                    title: {
+                        text: null
+                    },
+                    labels: {
+                        format: '{value} Marks'
+                    }
+                },
+
+                tooltip: {
+                    headerFormat: 'Student No.: {point.x} <br>',
+                    pointFormat: 'Marks: {point.y}',
+                    shared: true
+                },
+
+                legend: {
+                    enabled: false
+                },
+
+                series: [{
+                    accessibility: {
+                        keyboardNavigation: {
+                            enabled: false
+                        }
+                    },
+                    data: elevationData,
+                    lineColor: Highcharts.getOptions().colors[1],
+                    color: Highcharts.getOptions().colors[2],
+                    fillOpacity: 0.5,
+                    name: 'Elevation',
+                    marker: {
+                        enabled: false
+                    },
+                    threshold: null
+                }]
+
+            });
+        </script>
+        <script>
+            // Data generated from http://www.bikeforums.net/professional-cycling-fans/1113087-2017-tour-de-france-gpx-tcx-files.html
+            var elevationData = {{ kheerC }};
+
+            // Now create the chart
+            Highcharts.chart('containerD', {
+
+                chart: {
+                    type: 'area',
+                    zoomType: 'x',
+                    panning: true,
+                    panKey: 'shift',
+                    scrollablePlotArea: {
+                        minWidth: 600
+                    }
+                },
+
+                caption: {
+                    text: 'This chart uses the Highcharts Annotations feature to place labels at various points of interest. The labels are responsive and will be hidden to avoid overlap on small screens.'
+                },
+
+                title: {
+                    text: 'Graph of the Performance of Section C Students'
+                },
+
+                accessibility: {
+                    description: 'Image description: An annotated line graph illustrates the 8th stage of the 2017 Tour de France cycling race from the start point in Dole to the finish line at Station des Rousses. Altitude is plotted on the Y-axis at increments of 500m and distance is plotted on the X-axis in increments of 25 kilometers. The line graph is interactive, and the user can trace the altitude level at every 100-meter point along the stage. The graph is shaded below the data line to visualize the mountainous altitudes encountered on the 187.5-kilometre stage. The three largest climbs are highlighted at Col de la Joux, Côte de Viry and the final 11.7-kilometer, 6.4% gradient climb to Montée de la Combe de Laisia Les Molunes which peaks at 1200 meters above sea level. The stage passes through the villages of Arbois, Montrond, Bonlieu, Chassal and Saint-Claude along the route.'
+                },
+
+                credits: {
+                    enabled: false
+                },
+
+                annotations: [{
+                    labelOptions: {
+                        backgroundColor: 'rgba(255, 99, 181, 0.5)',
+                        verticalAlign: 'top',
+                        y: 15
+                    }
+                }],
+
+                xAxis: {
+                    labels: {
+                        format: '{value}'
+                    },
+                    minRange: 5,
+                    title: {
+                        text: 'No. of Students'
+                    }
+                },
+
+                yAxis: {
+                    startOnTick: true,
+                    endOnTick: false,
+                    maxPadding: 0.35,
+                    title: {
+                        text: null
+                    },
+                    labels: {
+                        format: '{value} Marks'
+                    }
+                },
+
+                tooltip: {
+                    headerFormat: 'Student No.: {point.x} <br>',
+                    pointFormat: 'Marks: {point.y}',
+                    shared: true
+                },
+
+                legend: {
+                    enabled: false
+                },
+
+                series: [{
+                    accessibility: {
+                        keyboardNavigation: {
+                            enabled: false
+                        }
+                    },
+                    data: elevationData,
+                    lineColor: Highcharts.getOptions().colors[1],
+                    color: Highcharts.getOptions().colors[2],
+                    fillOpacity: 0.5,
+                    name: 'Elevation',
+                    marker: {
+                        enabled: false
+                    },
+                    threshold: null
+                }]
+
+            });
+        </script>
+        <script>
+            // Data generated from http://www.bikeforums.net/professional-cycling-fans/1113087-2017-tour-de-france-gpx-tcx-files.html
+            var elevationData = {{ kheerA }};
+
+            // Now create the chart
+            Highcharts.chart('sectionB', {
+
+                chart: {
+                    type: 'area',
+                    zoomType: 'x',
+                    panning: true,
+                    panKey: 'shift',
+                    scrollablePlotArea: {
+                        minWidth: 600
+                    }
+                },
+
+                caption: {
+                    text: 'This chart uses the Highcharts Annotations feature to place labels at various points of interest. The labels are responsive and will be hidden to avoid overlap on small screens.'
+                },
+
+                title: {
+                    text: 'Graph of the Performance of Section A Students'
+                },
+
+                accessibility: {
+                    description: 'Image description: An annotated line graph illustrates the 8th stage of the 2017 Tour de France cycling race from the start point in Dole to the finish line at Station des Rousses. Altitude is plotted on the Y-axis at increments of 500m and distance is plotted on the X-axis in increments of 25 kilometers. The line graph is interactive, and the user can trace the altitude level at every 100-meter point along the stage. The graph is shaded below the data line to visualize the mountainous altitudes encountered on the 187.5-kilometre stage. The three largest climbs are highlighted at Col de la Joux, Côte de Viry and the final 11.7-kilometer, 6.4% gradient climb to Montée de la Combe de Laisia Les Molunes which peaks at 1200 meters above sea level. The stage passes through the villages of Arbois, Montrond, Bonlieu, Chassal and Saint-Claude along the route.'
+                },
+
+                credits: {
+                    enabled: false
+                },
+
+                annotations: [{
+                    labelOptions: {
+                        backgroundColor: 'rgba(255, 99, 181, 0.5)',
+                        verticalAlign: 'top',
+                        y: 15
+                    }
+                }],
+
+                xAxis: {
+                    labels: {
+                        format: '{value}'
+                    },
+                    minRange: 5,
+                    title: {
+                        text: 'No. of Students'
+                    }
+                },
+
+                yAxis: {
+                    startOnTick: true,
+                    endOnTick: false,
+                    maxPadding: 0.35,
+                    title: {
+                        text: null
+                    },
+                    labels: {
+                        format: '{value} Marks'
+                    }
+                },
+
+                tooltip: {
+                    headerFormat: 'Student No.: {point.x} <br>',
+                    pointFormat: 'Marks: {point.y}',
+                    shared: true
+                },
+
+                legend: {
+                    enabled: false
+                },
+
+                series: [{
+                    accessibility: {
+                        keyboardNavigation: {
+                            enabled: false
+                        }
+                    },
+                    data: elevationData,
+                    lineColor: Highcharts.getOptions().colors[1],
+                    color: Highcharts.getOptions().colors[2],
+                    fillOpacity: 0.5,
+                    name: 'Elevation',
+                    marker: {
+                        enabled: false
+                    },
+                    threshold: null
+                }]
+
+            });
+        </script>
+    <script>
+        Highcharts.chart('sectionA', {
+                chart: {
+                    type: 'area'
+                },
+                accessibility: {
+                    description: 'Image description: An area chart compares the nuclear stockpiles of the USA and the USSR/Russia between 1945 and 2017. The number of nuclear weapons is plotted on the Y-axis and the years on the X-axis. The chart is interactive, and the year-on-year stockpile levels can be traced for each country. The US has a stockpile of 6 nuclear weapons at the dawn of the nuclear age in 1945. This number has gradually increased to 369 by 1950 when the USSR enters the arms race with 6 weapons. At this point, the US starts to rapidly build its stockpile culminating in 32,040 warheads by 1966 compared to the USSR’s 7,089. From this peak in 1966, the US stockpile gradually decreases as the USSR’s stockpile expands. By 1978 the USSR has closed the nuclear gap at 25,393. The USSR stockpile continues to grow until it reaches a peak of 45,000 in 1986 compared to the US arsenal of 24,401. From 1986, the nuclear stockpiles of both countries start to fall. By 2000, the numbers have fallen to 10,577 and 21,000 for the US and Russia, respectively. The decreases continue until 2017 at which point the US holds 4,018 weapons compared to Russia’s 4,500.'
+                },
+                title: {
+                    text: 'US and USSR nuclear stockpiles'
+                },
+                subtitle: {
+                    text: 'Sources: <a href="https://thebulletin.org/2006/july/global-nuclear-stockpiles-1945-2006">' +
+                        'thebulletin.org</a> &amp; <a href="https://www.armscontrol.org/factsheets/Nuclearweaponswhohaswhat">' +
+                        'armscontrol.org</a>'
+                },
+                xAxis: {
+                    allowDecimals: false,
+                    labels: {
+                        formatter: function () {
+                            return this.value; // clean, unformatted number for year
+                        }
+                    },
+                    accessibility: {
+                        rangeDescription: 'Range: 1940 to 2017.'
+                    }
+                },
+                yAxis: {
+                    title: {
+                        text: 'Nuclear weapon states'
+                    },
+                    labels: {
+                        formatter: function () {
+                            return this.value + ' Marks';
+                        }
+                    }
+                },
+                tooltip: {
+                    pointFormat: 'Student No. {point.x} of Section {series.name} achieved {point.y} Marks'
+                },
+                plotOptions: {
+                    area: {
+                        pointStart: 1,
+                        marker: {
+                            enabled: false,
+                            symbol: 'circle',
+                            radius: 2,
+                            states: {
+                                hover: {
+                                    enabled: true
+                                }
+                            }
+                        }
+                    }
+                },
+                series: [{
+                    name: 'Section A',
+                    data: [
+                        {% for i in kheerA %}
+                            {{i[1]}},
+                        {% endfor %}
+                    ]
+                }, {
+                    name: 'Section B',
+                    data: [{% for i in kheerB %}
+                            {{ i[1]}},
+                        {% endfor %}
+                    ]
+                }, {
+                name: 'Section C',
+                data: [{% for i in kheerC %}
+                            {{ i[1]}},
+            {% endfor %}
+                    ]
+                }, {
+                name: 'Section D',
+                data: [{% for i in kheerD %}
+                            {{ i[1]}},
+            {% endfor %}
+                    ]
+                }]
+            });
+    </script>
+
+</body>
+
+</html>

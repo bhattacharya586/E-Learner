@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-    <title>Hello, world!</title>
+    <title>पाठशाला</title>
     <style>
         .card {
             margin: 0 auto;
@@ -30,7 +30,7 @@
             <div class="col-lg-6">
                 <div class="card shadow-lg" style="margin-top: 15%;">
                     <div class="card-body">
-                        <h3 class="text-center"><strong>Select The Semester and Course</strong></h3>
+                        <h3 class="text-center"><strong>Select The Year of Course</strong></h3>
                         <hr>
                         <form>
                             <div class="input-group">
@@ -38,12 +38,10 @@
                                     aria-label="Example select with button addon" name="meal" id="meal"
                                     onChange="changecat(this.value);">
                                     <option value="" disabled selected>Select</option>
-                                    <option value="Sem_1">Semester 1</option>
-                                    <option value="Sem_2">Semester 2</option>
-                                    <option value="Sem_3">Semester 3</option>
-                                    <option value="Sem_4">Semester 4</option>
-                                    <option value="Sem_5">Semester 5</option>
-                                    <option value="Sem_6">Semester 6</option>
+                                    <option value="BTech_1st_Year">Year 1</option>
+                                    <option value="BTech_2nd_Year">Year 2</option>
+                                    <option value="BTech_3rd_Year">Year 3</option>
+                                    <option value="BTech_4th_Year">Year 4</option>
                                 </select>
                             </div>
 
@@ -74,46 +72,57 @@
         crossorigin="anonymous"></script>
     <script>
         var mealsByCategory = {
-            Sem_1: ["Electronics Engg.",
-                "Engg Maths 1",
+            BTech_1st_Year: ["Electronics Engg",
+                "Engg Maths-01",
                 "Chemistry",
-                "Introduction to C Programming",
-                "Engg. Mechanics",
+                "Intro to C Prog",
+                "Engg Mech",
                 "AutoCAD",
-                "Professional Communication 1"],
-
-            Sem_2: ["Electrical Engg.",
-                "Engg Maths 2",
+                "Prof Comm-01",
+                "Elec Engg",
+                "Engg Maths-02",
                 "Physics",
-                "Advanced C Programming",
-                "Mechanical Engg.",
-                "Professional Communication 2"],
+                "Adv C Prog",
+                "Mech Engg",
+                "Prof Comm-02"],
 
-            Sem_3: ["Introduction to C++",
-                "Cloud Computing 1",
+            BTech_2nd_Year: ["Intro to C++",
+                "Cloud Comp-01",
                 "Discrete Maths",
-                "Career Skills",
-                "Logic Design"],
-
-            Sem_4: ["Computer Organization",
+                "Career Skills-01",
+                "Logic Design",
+                "Computer Org",
                 "CBNST",
-                "Cloud Computing 2",
-                "Career Skills",
-                "JAVA Programming",
-                "Finite Automata"],
+                "Cloud Comp-02",
+                "Career Skills-02",
+                "JAVA Prog",
+                "Finite Automata"
+                ],
 
-            Sem_5: ["DBMS",
-                "Operating System",
-                "Career Skills",
+            BTech_3rd_Year: ["DBMS",
+                "OS",
+                "Career Skills-03",
                 "Machine Learning",
-                "Cloud Computing 3"],
-
-            Sem_6: ["Computer Networks",
+                "Cloud Comp-03",
+                "Computer Networks",
                 "Compiler Design",
-                "DevOps Cloud Computing 4",
-                "Full Stack Web Development",
-                "Design and Analysis of Algorithms",
-                "Career Skills"]
+                "DevOps",
+                "FS Web Dev",
+                "Design Algorithms",
+                "Career Skills-04"
+                ],
+
+            BTech_4th_Year: ["DBMS",
+                "OS",
+                "Career Skills-03",
+                "Machine Learning",
+                "Cloud Comp-03",
+                "Computer Networks",
+                "Compiler Design",
+                "DevOps",
+                "FS Web Dev",
+                "Design Algorithms",
+                "Career Skills-04"],
         }
 
         function changecat(value) {

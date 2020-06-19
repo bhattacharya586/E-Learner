@@ -9,7 +9,11 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Dashboard</title>
+    <link href="https://vjs.zencdn.net/7.7.5/video-js.css" rel="stylesheet" />
+    
+    <!-- If you'd like to support IE8 (for Video.js versions prior to v7) -->
+    <script src="https://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
+    <title>पाठशाला</title>
     <link
         href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Amaranth:wght@700&family=Bree+Serif&family=Bungee&family=Do+Hyeon&display=swap"
         rel="stylesheet">
@@ -106,6 +110,9 @@
         #snow-container {
             height: 350px;
         }
+        .bg-gradient-black{
+            background-color: black;
+        }
     </style>
 </head>
 
@@ -115,22 +122,22 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-
+        <ul class="navbar-nav bg-gradient-black sidebar sidebar-dark accordion" id="accordionSidebar">
+        
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/student-home">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3"><strong>GEU-Terminal</strong></div>
+                <div class="sidebar-brand-text mx-3"><strong>पाठशाला</strong></div>
             </a>
-
+        
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
-
+        
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
-                <a class="nav-link" href="index.html">
+            <li class="nav-item">
+                <a class="nav-link" href="/student-home">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -143,89 +150,28 @@
                 </div>
                 <!-- Nav Item - Pages Collapse Menu -->
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="/read-graph">
                         <i class="fas fa-fw fa-envelope"></i>
                         <span>Test Analysis</span></a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <i class="fas fa-fw fa-envelope"></i>
-                        <span>Assignment Marks Analysis</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <i class="fas fa-fw fa-envelope"></i>
-                        <span>Theory Completed</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <i class="fas fa-fw fa-envelope"></i>
-                        <span>Video Completed</span></a>
-                </li>
-            </div>
-            <!-- Ending -->
-            <!-- Heading -->
-            <hr class="sidebar-divider">
-            <div>
-                <div class="sidebar-heading">
-                    Assessments
-                </div>
-                <!-- Nav Item - Pages Collapse Menu -->
-                <li class="nav-item">
-                    <a class="nav-link" href="charts.html">
-                        <i class="fas fa-fw fa-chart-area"></i>
-                        <span>Compiler Design Tests</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="charts.html">
-                        <i class="fas fa-fw fa-chart-area"></i>
-                        <span>Computer Network Tests</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="charts.html">
-                        <i class="fas fa-fw fa-chart-area"></i>
-                        <span>Full Stack Development Tests</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="charts.html">
-                        <i class="fas fa-fw fa-chart-area"></i>
-                        <span>DevOps Tests</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="charts.html">
-                        <i class="fas fa-fw fa-chart-area"></i>
-                        <span>DAA Tests</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="charts.html">
-                        <i class="fas fa-fw fa-chart-area"></i>
-                        <span>Career Skills Tests</span></a>
-                </li>
-            </div>
-            <!-- Ending -->
-            <!-- Heading -->
-            <hr class="sidebar-divider">
-            <div>
-                <div class="sidebar-heading">
-                    Information
-                </div>
-                <!-- Nav Item - Pages Collapse Menu -->
-                <li class="nav-item">
-                    <a class="nav-link" href="charts.html">
-                        <i class="fas fa-fw fa-chart-area"></i>
-                        <span>Attendance</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="charts.html">
-                        <i class="fas fa-fw fa-chart-area"></i>
-                        <span>Fee Details</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="charts.html">
-                        <i class="fas fa-fw fa-chart-area"></i>
-                        <span>Report Cards</span></a>
-                </li>
-
+        
+                <!--
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#">
+                                                <i class="fas fa-fw fa-envelope"></i>
+                                                <span>Assignment Marks Analysis</span></a>
+                                        </li>
+                                        
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#">
+                                                <i class="fas fa-fw fa-envelope"></i>
+                                                <span>Theory Completed</span></a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#">
+                                                <i class="fas fa-fw fa-envelope"></i>
+                                                <span>Video Completed</span></a>
+                                        </li>-->
             </div>
             <!-- Ending -->
             <!-- Heading -->
@@ -244,34 +190,76 @@
                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
                             <h6 class="collapse-header">Theory Contents:</h6>
-                            <a class="collapse-item" href="#">Compiler Design Theory</a>
-                            <a class="collapse-item" href="#">Computer Network Theory</a>
-                            <a class="collapse-item" href="#">Full Stack Development Theory</a>
-                            <a class="collapse-item" href="#">DevOps Theory</a>
-                            <a class="collapse-item" href="#">DAA Theory</a>
-                            <a class="collapse-item" href="#">Career Skills Theory</a>
+                            {% for k in info %}
+                            {% for i,j in k.items() %}
+                            <a class="collapse-item" href="/student-theory/{{ i }}">{{ i }}</a>
+                            {% endfor %}
+                            {% endfor %}
                         </div>
                     </div>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseN"
-                        aria-expanded="true" aria-controls="collapseN">
+                <li class="nav-item active">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo2"
+                        aria-expanded="true" aria-controls="collapseTwo2">
                         <i class="fas fa-fw fa-sticky-note"></i>
                         <span>Video Contents</span>
                     </a>
-                    <div id="collapseN" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div id="collapseTwo2" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
                             <h6 class="collapse-header">Video Contents:</h6>
-                            <a class="collapse-item" href="#">Compiler Design Video</a>
-                            <a class="collapse-item" href="#">Computer Network Video</a>
-                            <a class="collapse-item" href="#">Full Stack Development Videos</a>
-                            <a class="collapse-item" href="#">DevOps Videos</a>
-                            <a class="collapse-item" href="#">DAA Videos</a>
-                            <a class="collapse-item" href="#">Career Skills Videos</a>
+                            {% for k in info %}
+                            {% for i,j in k.items() %}
+                            <a class="collapse-item" href="/student-video/{{ i }}">{{ i }}</a>
+                            {% endfor %}
+                            {% endfor %}
                         </div>
                     </div>
                 </li>
             </div>
+            <hr class="sidebar-divider">
+            <div>
+                <div class="sidebar-heading">
+                    Assessments and Tests
+                </div>
+                <!-- Nav Item - Pages Collapse Menu -->
+        
+                {% for k in info %}
+                {% for i,j in k.items() %}
+                <li class="nav-item">
+                    <a class="nav-link" href="/student-tests/{{i}}">
+                        <i class="fas fa-fw fa-chart-area"></i>
+                        <span>{{ i }} Tests</span></a>
+                </li>
+                {% endfor %}
+                {% endfor %}
+            </div>
+            <!-- Ending -->
+            <!-- Heading 
+                                    <hr class="sidebar-divider">
+                                    <div>
+                                        <div class="sidebar-heading">
+                                            Information
+                                        </div>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="charts.html">
+                                                <i class="fas fa-fw fa-chart-area"></i>
+                                                <span>Attendance</span></a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="charts.html">
+                                                <i class="fas fa-fw fa-chart-area"></i>
+                                                <span>Fee Details</span></a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="charts.html">
+                                                <i class="fas fa-fw fa-chart-area"></i>
+                                                <span>Report Cards</span></a>
+                                        </li>
+                                        
+                                    </div>-->
+            <!-- Ending -->
+            <!-- Heading -->
+        
             <!-- Ending -->
             <!-- Heading -->
             <hr class="sidebar-divider">
@@ -279,34 +267,34 @@
                 <div class="sidebar-heading">
                     Blogs and Contact
                 </div>
-                <!-- Nav Item - Pages Collapse Menu -->
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <i class="fas fa-fw fa-envelope"></i>
-                        <span>Blogs</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <i class="fas fa-fw fa-phone"></i>
-                        <span>Corona Update</span></a>
-                </li>
+                <!-- Nav Item - Pages Collapse Menu 
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/student-blog">
+                                                <i class="fas fa-fw fa-envelope"></i>
+                                                <span>Blogs</span></a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#">
+                                                <i class="fas fa-fw fa-phone"></i>
+                                                <span>Corona Update</span></a>
+                                        </li>-->
                 <li class="nav-item">
                     <a class="nav-link" href="#">
                         <i class="fas fa-fw fa-phone"></i>
                         <span>Contacts</span></a>
                 </li>
-
+        
             </div>
             <!-- Ending -->
-
+        
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
-
+        
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
-
+        
         </ul>
         <!-- End of Sidebar -->
 
@@ -331,7 +319,7 @@
                             <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
                                 aria-label="Search" aria-describedby="basic-addon2">
                             <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
+                                <button class="btn btn-dark" type="button">
                                     <i class="fas fa-search fa-sm"></i>
                                 </button>
                             </div>
@@ -356,7 +344,7 @@
                                             placeholder="Search for..." aria-label="Search"
                                             aria-describedby="basic-addon2">
                                         <div class="input-group-append">
-                                            <button class="btn btn-primary" type="button">
+                                            <button class="btn btn-dark" type="button">
                                                 <i class="fas fa-search fa-sm"></i>
                                             </button>
                                         </div>
@@ -381,7 +369,7 @@
                                 </h6>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="mr-3">
-                                        <div class="icon-circle bg-primary">
+                                        <div class="icon-circle bg-dark">
                                             <i class="fas fa-file-alt text-white"></i>
                                         </div>
                                     </div>
@@ -488,7 +476,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ class_email }}</span>
                                 <img class="img-profile rounded-circle"
                                     src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
                             </a>
@@ -508,7 +496,7 @@
                                     Activity Log
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                <a class="dropdown-item" href="/logoutstudent">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
                                 </a>
@@ -526,20 +514,20 @@
                             <div class="row">
                                 <div class="col">
                                     <label for="inputState">Subject Name</label>
-                                    <input type="text" class="form-control" placeholder="First name" style="background-color: white;" readonly>
+                                    <input type="text" class="form-control" placeholder="Subject Name" value="{{ subname }}" style="background-color: white;" readonly>
                                 </div>
                                 <div class="col">
                                     <label for="inputState">Select The Unit/ Chapter</label>
                                     <select id="nameriop" onchange="f()" class="form-control">
                                         <option selected value="">Choose...</option>
-                                        <option value="Computer Organization">1</option>
-                                        <option value="Computer Networks">2</option>
-                                        <option value="3">3</option>
+                                        {% for i in chapters %}
+                                            <option value="{{i}}">{{i}}</option>
+                                        {% endfor %}
                                     </select>
                                 </div>
                             </div>
                         </form>
-                        <h1 class="text-center mt-3">Theory Contents</h1>
+                        <h1 class="text-center mt-3">Video Contents</h1>
                     <div class="row mt-3" id="demo">
                         
                         
@@ -563,13 +551,17 @@
                            async function f() {
                                 console.log("Called");
                                 var sbj = document.getElementById("nameriop").value;
+                                conter = 0
                                 console.log("Value : ",sbj);
                                 var v= "";
-                                var leadsRef = database.ref('/Videos/'+ sbj);
+                                var leadsRef = database.ref('/Videos/{{subname}}');
                                 leadsRef.on('value', function (snapshot) {
                                     snapshot.forEach(function (childSnapshot) {
                                         var childData = childSnapshot.val();
-                                        v = v + "<div class='col-lg-4'><div class='card shadow mt-2'><div class='row no-gutters'><div class='col-md-12'><div class='card-body'><span class='badge badge-pill badge-primary'>"+sbj+"</span><h6 class='text-left'><strong>"+childData.Title+"</strong></h6><p class='card-text'><small class='text-muted'>"+childData.Date+"</small><a style='float: right;cursor: pointer;font-size: 13px;' class='text-muted text-right text-primary'>Read Full <i class='fas fa-long-arrow-alt-right fa-sm fa-fw mr-2 text-gray-400'></i> </a></p></div></div></div></div ></div >";
+                                        if(childData.Unit_Name==sbj){
+                                            v = v + "<div class='col-lg-4'><div class='card shadow mt-2'><div class='row no-gutters'><div class='col-md-12'><div class='card-body'><span class='badge badge-pill badge-primary'>" + sbj + "</span><video id = 'my-video' class='video-js' controls preload = 'auto' width = '640' height = '264' poster = 'https://thumbs.dreamstime.com/b/two-color-compiler-vector-icon-programming-concept-isolated-blue-sign-symbol-can-be-use-web-mobile-logo-eps-149163801.jpg' data - setup='{}'><source src='"+childData.URL+"' type='video/mp4' /><source src='"+childData.URL+"' type='video/webm' /><p class='vjs-no-js'>To view this video please enable JavaScript, and consider upgrading to a web browser that<a href='https://videojs.com/html5-video-support/'' target='_blank'>supports HTML5 video</a></p></video ><br><h6 class='text-left'><strong>" + childData.Title + "</strong></h6><div class='row'><div class='col-lg-6'><p class='card-text text-left'><small class='text-muted'>" + childData.Date + "</small></p></div><div class='col-lg-6' style='float:right;'><a type = 'button' class='btn badge badge-pill text-white text-center btn-primary' data-toggle='modal' data-target='#exampleModal" + conter +"' style='width:50%;'>Share</a></div></div></div></div></div></div ></div> <div class='modal fade' id='exampleModal"+conter+"' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true'><div class='modal-dialog' role='document'><div class='modal-content'><div class='modal-header'><h5 class='modal-title' id='exampleModalLabel'>Share Video With ...</h5><button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div><div class='modal-body'><form action='/share-video' method='POST'><input type='hidden' name='cur_subn' value='{{subname}}'> <div class='form-group'><label for='exampleInputEmail1'>To</label><input type='email' class='form-control' name='email_id_t' id='exampleInputEmail1' aria-describedby='emailHelp'></div><div class='form-group'><label for='exampleInputPassword1'>Subject</label><input type='text' class='form-control' name='subject_r_t' id='exampleInputPassword1'></div><div class='form-group'><label for= 'exampleFormControlTextarea1'> Example textarea</label ><textarea class='form-control' id='exampleFormControlTextarea1' rows='3' readonly name='content_t'>"+ childData.URL+"</textarea></div ><div class='modal-footer'><button type='button' class='btn btn-secondary' data-dismiss='modal'>Close</button><button type='submit' class='btn btn-primary'>Send Mail</button></div></form></div></div></div></div>";
+                                            conter = conter + 1;
+                                        }
                                         console.log(childData);
                                     });
                                 });
@@ -589,7 +581,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2019</span>
+                        <span>Copyright &copy; पाठशाला 2020</span>
                     </div>
                 </div>
             </footer>
@@ -727,6 +719,7 @@
     <script src="{{ url_for('static', filename='vendor/chart.js/Chart.min.js') }}"></script>
     <script src="{{ url_for('static', filename='vendor/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ url_for('static', filename='vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="https://vjs.zencdn.net/7.7.5/video.js"></script>
 
     <!-- Page level custom scripts -->
     <script src="{{ url_for('static', filename='js/demo/datatables-demo.js') }}"></script>

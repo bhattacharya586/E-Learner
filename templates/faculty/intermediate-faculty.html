@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <title>पाठशाला</title>
+    <style>
+        .card {
+            margin: 0 auto;
+            /* Added */
+            float: none;
+            /* Added */
+            margin-bottom: 10px;
+            /* Added */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3"></div>
+            <div class="col-lg-6">
+                <div class="card shadow-lg" style="margin-top: 15%;">
+                    <div class="card-body">
+                        <h3 class="text-center"><strong>Select The Year of Course</strong></h3>
+                        <hr>
+                        <form>
+                            <div class="input-group">
+                                <select class="custom-select" id="inputGroupSelect04"
+                                    aria-label="Example select with button addon" name="meal" id="meal"
+                                    onChange="changecat(this.value);">
+                                    <option value="" disabled selected>Select</option>
+                                    <option value="BTech_1st_Year">Year 1</option>
+                                    <option value="BTech_2nd_Year">Year 2</option>
+                                    <option value="BTech_3rd_Year">Year 3</option>
+                                    <option value="BTech_4th_Year">Year 4</option>
+                                </select>
+                            </div>
+
+                        </form>
+
+                    </div>
+                    <div class="container-fluid">
+                        <div class="row" name="category" id="category">
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-lg-3"></div>
+        </div>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+    <script>
+        var mealsByCategory = {
+            BTech_1st_Year: ["Electronics Engg",
+                "Engg Maths-01",
+                "Chemistry",
+                "Intro to C Prog",
+                "Engg Mech",
+                "AutoCAD",
+                "Prof Comm-01",
+                "Elec Engg",
+                "Engg Maths-02",
+                "Physics",
+                "Adv C Prog",
+                "Mech Engg",
+                "Prof Comm-02"],
+
+            BTech_2nd_Year: ["Intro to C++",
+                "Cloud Comp-01",
+                "Discrete Maths",
+                "Career Skills-01",
+                "Logic Design",
+                "Computer Org",
+                "CBNST",
+                "Cloud Comp-02",
+                "Career Skills-02",
+                "JAVA Prog",
+                "Finite Automata"
+                ],
+
+            BTech_3rd_Year: ["DBMS",
+                "OS",
+                "Career Skills-03",
+                "Machine Learning",
+                "Cloud Comp-03",
+                "Computer Networks",
+                "Compiler Design",
+                "DevOps",
+                "FS Web Dev",
+                "Design Algorithms",
+                "Career Skills-04"
+                ],
+
+            BTech_4th_Year: ["DBMS",
+                "OS",
+                "Career Skills-03",
+                "Machine Learning",
+                "Cloud Comp-03",
+                "Computer Networks",
+                "Compiler Design",
+                "DevOps",
+                "FS Web Dev",
+                "Design Algorithms",
+                "Career Skills-04"],
+        }
+
+        function changecat(value) {
+            if (value.length == 0) document.getElementById("category").innerHTML = '<div class="col-lg-4">< div class="card" ></div></div>';
+            else {
+                var catOptions = "";
+                for (categoryId in mealsByCategory[value]) {
+                    {%if (typeurl == "theoryupload") %}
+                    var moocho = '<a href="/faculty_upload-theory/' + mealsByCategory[value][categoryId] + '"><div class="card shadow-sm" style="padding:10px 10px;"><p class="text-center"><strong>' + mealsByCategory[value][categoryId] + '</strong></p></div></a>';
+                    {% endif %}
+                    {%if (typeurl == "videoupload") %}
+                    var moocho = '<a href="/faculty_upload-video/' + mealsByCategory[value][categoryId] + '"><div class="card shadow-sm" style="padding:10px 10px;"><p class="text-center"><strong>' + mealsByCategory[value][categoryId] + '</strong></p></div></a>';
+                    {% endif %}
+                    {%if (typeurl == "assignmentupload") %}
+                    var moocho = '<a href="/upload-assignments/' + mealsByCategory[value][categoryId] + '"><div class="card shadow-sm" style="padding:10px 10px;"><p class="text-center"><strong>' + mealsByCategory[value][categoryId] + '</strong></p></div></a>';
+                    {% endif %}
+                    catOptions += '<div class="col-lg-4">' + moocho + '</div>';
+                    console.log(catOptions);
+                }
+                document.getElementById("category").innerHTML = catOptions;
+            }
+        }
+    </script>
+</body>
+
+</html>

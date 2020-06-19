@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Dashboard</title>
+    <title>पाठशाला</title>
     <script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js') }}"></script>
     <script src="{{ url_for('static', filename='vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 
@@ -44,7 +44,10 @@
         });
 
     </script>
-
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
     <!-- Custom styles for this template-->
     <link href="{{ url_for('static', filename='css/sb-admin-2.min.css') }}" rel="stylesheet">
     <link href="{{ url_for('static', filename='vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
@@ -126,6 +129,45 @@
             });
         });
     </script>
+    <style>
+        .highcharts-figure, .highcharts-data-table table {
+  min-width: 310px; 
+  max-width: 800px;
+  margin: 1em auto;
+}
+
+#container {
+  height: 400px;
+}
+
+.highcharts-data-table table {
+	font-family: Verdana, sans-serif;
+	border-collapse: collapse;
+	border: 1px solid #EBEBEB;
+	margin: 10px auto;
+	text-align: center;
+	width: 100%;
+	max-width: 500px;
+}
+.highcharts-data-table caption {
+  padding: 1em 0;
+  font-size: 1.2em;
+  color: #555;
+}
+.highcharts-data-table th {
+	font-weight: 600;
+  padding: 0.5em;
+}
+.highcharts-data-table td, .highcharts-data-table th, .highcharts-data-table caption {
+  padding: 0.5em;
+}
+.highcharts-data-table thead tr, .highcharts-data-table tr:nth-child(even) {
+  background: #f8f8f8;
+}
+.highcharts-data-table tr:hover {
+  background: #f1f7ff;
+}
+    </style>
 </head>
 
 <body id="page-top">
@@ -134,14 +176,14 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar ">
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
         
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand  d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/admin-dashboard">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3"><strong>GEU-Terminal</strong></div>
+                <div class="sidebar-brand-text mx-3"><strong>पाठशाला</strong></div>
             </a>
         
             <!-- Divider -->
@@ -149,7 +191,7 @@
         
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="/admin-dashboard">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -171,7 +213,7 @@
                         <div class="bg-white py-2 collapse-inner rounded">
                             <h6 class="collapse-header">Theory Contents:</h6>
                             <a class="collapse-item" href="/intermediate/theoryupload">Upload</a>
-                            <a class="collapse-item" href="cards.html">Edit</a>
+                            
                         </div>
                     </div>
                 </li>
@@ -185,38 +227,26 @@
                         <div class="bg-white py-2 collapse-inner rounded">
                             <h6 class="collapse-header">Video Contents:</h6>
                             <a class="collapse-item" href="/intermediate/videoupload">Upload</a>
-                            <a class="collapse-item" href="cards.html">Edit</a>
+                            
                         </div>
                     </div>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseY" aria-expanded="true"
-                        aria-controls="collapseY">
-                        <i class="fas fa-fw fa-pen"></i>
-                        <span>Assignments</span>
-                    </a>
-                    <div id="collapseY" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                        <div class="bg-white py-2 collapse-inner rounded">
-                            <h6 class="collapse-header">Assignments:</h6>
-                            <a class="collapse-item" href="/intermediate/assignmentupload">Upload</a>
-                            <a class="collapse-item" href="cards.html">Edit</a>
-                        </div>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseZ" aria-expanded="true"
-                        aria-controls="collapseZ">
-                        <i class="fas fa-fw fa-user"></i>
-                        <span>Blogs</span>
-                    </a>
-                    <div id="collapseZ" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                        <div class="bg-white py-2 collapse-inner rounded">
-                            <h6 class="collapse-header">Blogs:</h6>
-                            <a class="collapse-item" href="/upload-blogs">Upload</a>
-                            <a class="collapse-item" href="cards.html">Edit</a>
-                        </div>
-                    </div>
-                </li>
+                <!--
+                                <li class="nav-item">
+                                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseZ" aria-expanded="true"
+                                        aria-controls="collapseZ">
+                                        <i class="fas fa-fw fa-user"></i>
+                                        <span>Blogs</span>
+                                    </a>
+                                    <div id="collapseZ" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                                        <div class="bg-white py-2 collapse-inner rounded">
+                                            <h6 class="collapse-header">Blogs:</h6>
+                                            <a class="collapse-item" href="/upload-blogs">Upload</a>
+                                            <a class="collapse-item" href="cards.html">Edit</a>
+                                        </div>
+                                    </div>
+                                </li>
+                            -->
             </div>
             <!-- Ending -->
             <!-- Heading -->
@@ -227,73 +257,70 @@
                 </div>
                 <!-- Nav Item - Pages Collapse Menu -->
                 <li class="nav-item">
-                    <a class="nav-link" href="charts.html">
+                    <a class="nav-link" href="/admin-visuals">
                         <i class="fas fa-fw fa-chart-area"></i>
                         <span>Performance Visuals</span></a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="charts.html">
-                        <i class="fas fa-fw fa-chart-area"></i>
-                        <span>Assignments Visuals</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="charts.html">
-                        <i class="fas fa-fw fa-chart-area"></i>
-                        <span>Job Visuals</span></a>
-                </li>
+                <!--
+                                <li class="nav-item">
+                                    <a class="nav-link" href="charts.html">
+                                        <i class="fas fa-fw fa-chart-area"></i>
+                                        <span>Job Visuals</span></a>
+                                </li>
+                                -->
             </div>
             <!-- Ending -->
             <!-- Heading -->
-            <hr class="sidebar-divider">
-            <div>
-                <div class="sidebar-heading">
-                    Projects
-                </div>
-                <!-- Nav Item - Pages Collapse Menu -->
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseA" aria-expanded="true"
-                        aria-controls="collapseA">
-                        <i class="fas fa-fw fa-sticky-note"></i>
-                        <span>Career</span>
-                    </a>
-                    <div id="collapseA" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                        <div class="bg-white py-2 collapse-inner rounded">
-                            <h6 class="collapse-header">Career</h6>
-                            <a class="collapse-item" href="buttons.html">Check Resume</a>
-                            <a class="collapse-item" href="cards.html">Interview Schedules</a>
-                        </div>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseB" aria-expanded="true"
-                        aria-controls="collapseB">
-                        <i class="fas fa-fw fa-video"></i>
-                        <span>Library</span>
-                    </a>
-                    <div id="collapseB" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                        <div class="bg-white py-2 collapse-inner rounded">
-                            <h6 class="collapse-header">Library:</h6>
-                            <a class="collapse-item" href="buttons.html">Edit e-books</a>
-                            <a class="collapse-item" href="cards.html">Library Record</a>
-                            <a class="collapse-item" href="cards.html">Upload New Books</a>
-                        </div>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseC" aria-expanded="true"
-                        aria-controls="collapseC">
-                        <i class="fas fa-fw fa-pen"></i>
-                        <span>Report Cards</span>
-                    </a>
-                    <div id="collapseC" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                        <div class="bg-white py-2 collapse-inner rounded">
-                            <h6 class="collapse-header">Report Cards:</h6>
-                            <a class="collapse-item" href="buttons.html">Of Recruits</a>
-                            <a class="collapse-item" href="cards.html">Of Students</a>
-                        </div>
-                    </div>
-                </li>
-            </div>
+            <!--
+                            <div>
+                                <div class="sidebar-heading">
+                                    Projects
+                                </div>
+                                <li class="nav-item">
+                                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseA" aria-expanded="true"
+                                        aria-controls="collapseA">
+                                        <i class="fas fa-fw fa-sticky-note"></i>
+                                        <span>Career</span>
+                                    </a>
+                                    <div id="collapseA" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                                        <div class="bg-white py-2 collapse-inner rounded">
+                                            <h6 class="collapse-header">Career</h6>
+                                            <a class="collapse-item" href="buttons.html">Check Resume</a>
+                                            <a class="collapse-item" href="cards.html">Interview Schedules</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseB" aria-expanded="true"
+                                        aria-controls="collapseB">
+                                        <i class="fas fa-fw fa-video"></i>
+                                        <span>Library</span>
+                                    </a>
+                                    <div id="collapseB" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                                        <div class="bg-white py-2 collapse-inner rounded">
+                                            <h6 class="collapse-header">Library:</h6>
+                                            <a class="collapse-item" href="buttons.html">Edit e-books</a>
+                                            <a class="collapse-item" href="cards.html">Library Record</a>
+                                            <a class="collapse-item" href="cards.html">Upload New Books</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseC" aria-expanded="true"
+                                        aria-controls="collapseC">
+                                        <i class="fas fa-fw fa-pen"></i>
+                                        <span>Report Cards</span>
+                                    </a>
+                                    <div id="collapseC" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                                        <div class="bg-white py-2 collapse-inner rounded">
+                                            <h6 class="collapse-header">Report Cards:</h6>
+                                            <a class="collapse-item" href="buttons.html">Of Recruits</a>
+                                            <a class="collapse-item" href="cards.html">Of Students</a>
+                                        </div>
+                                    </div>
+                                </li>
+                            </div>
+                            -->
             <!-- Ending -->
             <!-- Heading -->
             <hr class="sidebar-divider">
@@ -301,7 +328,7 @@
                 <div class="sidebar-heading">
                     Databases
                 </div>
-                <!-- Nav Item - Pages Collapse Menu -->
+                <!-- Nav Item - Pages Collapse Menu 
                 <li class="nav-item">
                     <a class="nav-link" href="#">
                         <i class="fas fa-fw fa-chart-area"></i>
@@ -311,47 +338,51 @@
                     <a class="nav-link" href="#">
                         <i class="fas fa-fw fa-pen"></i>
                         <span>Students Assignments</span></a>
-                </li>
+                </li>-->
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="/opendatabase/employersinformationdatabase">
                         <i class="fas fa-fw fa-users"></i>
                         <span>Employers Information</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="/opendatabase/studentinformationdatabase">
                         <i class="fas fa-fw fa-users"></i>
                         <span>Student Information</span></a>
                 </li>
+                <!--
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="/opendatabase/studentlogininformationdatabase">
                         <i class="fas fa-fw fa-chart-area"></i>
                         <span>Student Login Information</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="/opendatabase/employerslogininformationdatabase">
                         <i class="fas fa-fw fa-chart-area"></i>
                         <span>Employers Login Information</span></a>
                 </li>
+                -->
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="/opendatabase/videodatabase">
                         <i class="fas fa-fw fa-video"></i>
                         <span>Videos</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="/opendatabase/theorydatabase">
                         <i class="fas fa-fw fa-sticky-note"></i>
                         <span>Theory</span></a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <i class="fas fa-fw fa-comment"></i>
-                        <span>Comments</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <i class="fab fa-fw fa-whatsapp"></i>
-                        <span>Whatsapp Messages</span></a>
-                </li>
+                <!--
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">
+                                        <i class="fas fa-fw fa-comment"></i>
+                                        <span>Comments</span></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">
+                                        <i class="fab fa-fw fa-whatsapp"></i>
+                                        <span>Whatsapp Messages</span></a>
+                                </li>
+                                -->
             </div>
             <!-- Ending -->
             <!-- Heading -->
@@ -362,7 +393,7 @@
                 </div>
                 <!-- Nav Item - Pages Collapse Menu -->
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="/mails">
                         <i class="fas fa-fw fa-envelope"></i>
                         <span>Mails</span></a>
                 </li>
@@ -564,7 +595,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ malik }}</span>
                                 <img class="img-profile rounded-circle"
                                     src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
                             </a>
@@ -598,17 +629,16 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-
+                
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+                
                     </div>
-
+                
                     <!-- Content Row -->
                     <div class="row">
-
+                
                         <!-- Earnings (Monthly) Card Example -->
                         <div class="col-xl-3 col-md-6 mb-4">
                             <div class="card border-left-primary shadow h-100 py-2">
@@ -616,8 +646,8 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Earnings (Monthly)</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                                                No. of Students in BTech Ist Year</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{student_list_detailedA|length}}</div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -626,7 +656,7 @@
                                 </div>
                             </div>
                         </div>
-
+                
                         <!-- Earnings (Monthly) Card Example -->
                         <div class="col-xl-3 col-md-6 mb-4">
                             <div class="card border-left-success shadow h-100 py-2">
@@ -634,8 +664,8 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                Earnings (Annual)</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+                                                No. of Students in BTech IInd Year</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{student_list_detailedB|length}}</div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -644,36 +674,25 @@
                                 </div>
                             </div>
                         </div>
-
+                
                         <!-- Earnings (Monthly) Card Example -->
                         <div class="col-xl-3 col-md-6 mb-4">
                             <div class="card border-left-info shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Tasks
-                                            </div>
-                                            <div class="row no-gutters align-items-center">
-                                                <div class="col-auto">
-                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
-                                                </div>
-                                                <div class="col">
-                                                    <div class="progress progress-sm mr-2">
-                                                        <div class="progress-bar bg-info" role="progressbar"
-                                                            style="width: 50%" aria-valuenow="50" aria-valuemin="0"
-                                                            aria-valuemax="100"></div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                                No. of Students in BTech IIIrd Year</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{student_list_detailedC|length}}</div>
                                         </div>
                                         <div class="col-auto">
-                                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
+                
                         <!-- Pending Requests Card Example -->
                         <div class="col-xl-3 col-md-6 mb-4">
                             <div class="card border-left-warning shadow h-100 py-2">
@@ -681,8 +700,8 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                Pending Requests</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                                                No. of Students in BTech IVth Year</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{student_list_detailedD|length}}</div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-comments fa-2x text-gray-300"></i>
@@ -692,21 +711,70 @@
                             </div>
                         </div>
                     </div>
-
+                
                     <!-- Content Row -->
-
+                
+                    <!-- Content Row -->
+                </div>
+                <div class="container-fluid text-center">
+                    <h3 class="text-left" style="color: black;"><strong>Hot Topics: Theory</strong></h3>
+                    {% for k in info %}
+                    {% for i,j in k.items() %}
+                    <a href="/student-theory/{{ i }}" class="btn mr-1 mb-2" style="background-color: white;width: 15%;"><span
+                            style="white-space: nowrap;">{{ i }}</span></a>
+                    {% endfor %}
+                    {% endfor %}
+                
+                    <div class="owl-carousel mt-5 owl-carousel2 owl-loaded owl-drag">
+                        <div class="owl-stage-outer">
+                            <div class="owl-stage">
+                                {% for i in range(topics_theory_list|length) %}
+                                <div class="owl-item mb-5" style=" background-color: white;">
+                                    <div class="card shadow-lg" style="min-height: 225px;">
+                                        <div class="card-body p-2">
+                
+                                            <div class="row p-1">
+                
+                                                <div class="col-lg-5">
+                                                    <div class="text-left mb-3">
+                                                        <span
+                                                            class="badge ml-2 text-center badge-pill badge-primary text-center">{{ UN_theory_list[i] }}</span>
+                                                    </div>
+                
+                                                    <div class="text-center">
+                                                        <img src="../static/img/30100.jpg"
+                                                            style="height: 100%;border-radius: 8px;width: 100%;"
+                                                            class="img-fluid d-flex align-content-center" alt="...">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-7 text-left" style="margin-top: 2.5rem;">
+                                                    <h5 class="card-title" style="color: black;">
+                                                        <strong>{{ topics_theory_list[i] }}</strong></h5>
+                                                    <p class="card-text text-primary">By {{ author_theory_list[i] }}</p>
+                                                    <p class="text-muted">Uploaded On: {{ date_theory_list[i] }}
+                                                        {{ time_theory_list[i] }}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                
+                </div>
+                <div class="container-fluid text-center">
                     <div class="row">
-
-                        <!-- Area Chart -->
-                        <div class="col-xl-8 col-lg-7">
+                        <div class="col-xl-6 col-lg-6">
                             <div class="card shadow mb-4">
                                 <!-- Card Header - Dropdown -->
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
+                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">BTech 3rd Year Section A</h6>
                                     <div class="dropdown no-arrow">
-                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+                                            aria-haspopup="true" aria-expanded="false">
                                             <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
@@ -721,23 +789,41 @@
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body">
-                                    <div class="chart-area">
-                                        <canvas id="myAreaChart"></canvas>
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Class Roll No.</th>
+                                                    <th scope="col">Student Name</th>
+                                                    <th scope="col">U. Roll No.</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% set count = namespace(value=0) %}
+                                                {% for i in range(student_list_detailedC|length) %}
+                                                {% if student_list_detailedC[i][3] == "A" and count.value<5 %}
+                                                <tr>
+                                                    <th scope="row">{{ student_list_detailedC[i][1] }}</th>
+                                                    <td>{{ student_list_detailedC[i][0] }}</td>
+                                                    <td>{{ student_list_detailedC[i][2] }}</td>
+                                                </tr>
+                                                {% set count.value = count.value + 1 %}
+                                                {% endif %}
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
-                        <!-- Pie Chart -->
-                        <div class="col-xl-4 col-lg-5">
+                        <div class="col-xl-6 col-lg-6">
                             <div class="card shadow mb-4">
                                 <!-- Card Header - Dropdown -->
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Revenue Sources</h6>
+                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">BTech 3rd Year Section B</h6>
                                     <div class="dropdown no-arrow">
-                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+                                            aria-haspopup="true" aria-expanded="false">
                                             <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
@@ -752,162 +838,182 @@
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body">
-                                    <div class="chart-pie pt-4 pb-2">
-                                        <canvas id="myPieChart"></canvas>
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Class Roll No.</th>
+                                                    <th scope="col">Student Name</th>
+                                                    <th scope="col">U. Roll No.</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% set count = namespace(value=0) %}
+                                                {% for i in range(student_list_detailedC|length) %}
+                                                {% if student_list_detailedC[i][3] == "B" and count.value<5 %}
+                                                <tr>
+                                                    <th scope="row">{{ student_list_detailedC[i][1] }}</th>
+                                                    <td>{{ student_list_detailedC[i][0] }}</td>
+                                                    <td>{{ student_list_detailedC[i][2] }}</td>
+                                                </tr>
+                                                {% set count.value = count.value + 1 %}
+                                                {% endif %}
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
                                     </div>
-                                    <div class="mt-4 text-center small">
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-primary"></i> Direct
-                                        </span>
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-success"></i> Social
-                                        </span>
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-info"></i> Referral
-                                        </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6">
+                            <div class="card shadow mb-4">
+                                <!-- Card Header - Dropdown -->
+                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">BTech 3rd Year Section C</h6>
+                                    <div class="dropdown no-arrow">
+                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+                                            aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                            aria-labelledby="dropdownMenuLink">
+                                            <div class="dropdown-header">Dropdown Header:</div>
+                                            <a class="dropdown-item" href="#">Action</a>
+                                            <a class="dropdown-item" href="#">Another action</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="#">Something else here</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Card Body -->
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Class Roll No.</th>
+                                                    <th scope="col">Student Name</th>
+                                                    <th scope="col">U. Roll No.</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% set count = namespace(value=0) %}
+                                                {% for i in range(student_list_detailedC|length) %}
+                                                {% if student_list_detailedC[i][3] == "C" and count.value<5 %}
+                                                <tr>
+                                                    <th scope="row">{{ student_list_detailedC[i][1] }}</th>
+                                                    <td>{{ student_list_detailedC[i][0] }}</td>
+                                                    <td>{{ student_list_detailedC[i][2] }}</td>
+                                                </tr>
+                                                {% set count.value = count.value + 1 %}
+                                                {% endif %}
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6">
+                            <div class="card shadow mb-4">
+                                <!-- Card Header - Dropdown -->
+                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">BTech 3rd Year Section D</h6>
+                                    <div class="dropdown no-arrow">
+                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+                                            aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                            aria-labelledby="dropdownMenuLink">
+                                            <div class="dropdown-header">Dropdown Header:</div>
+                                            <a class="dropdown-item" href="#">Action</a>
+                                            <a class="dropdown-item" href="#">Another action</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="#">Something else here</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Card Body -->
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Class Roll No.</th>
+                                                    <th scope="col">Student Name</th>
+                                                    <th scope="col">U. Roll No.</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% set count = namespace(value=0) %}
+                                                {% for i in range(student_list_detailedC|length) %}
+                                                {% if student_list_detailedC[i][3] == "D" and count.value<5 %}
+                                                <tr>
+                                                    <th scope="row">{{ student_list_detailedC[i][1] }}</th>
+                                                    <td>{{ student_list_detailedC[i][0] }}</td>
+                                                    <td>{{ student_list_detailedC[i][2] }}</td>
+                                                </tr>
+                                                {% set count.value = count.value + 1 %}
+                                                {% endif %}
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                    <!-- Content Row -->
-                    <div class="row">
-
-                        <!-- Content Column -->
-                        <div class="col-lg-6 mb-4">
-
-                            <!-- Project Card Example -->
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Projects</h6>
+                </div>
+                
+                <div class="container-fluid text-center">
+                    <h3 class="text-left" style="color: black;"><strong>Hot Topics: Videos</strong></h3>
+                    {% for k in info %}
+                    {% for i,j in k.items() %}
+                    <a href="/student-theory/{{ i }}" class="btn mr-1 mb-2" style="background-color: white;width: 15%;"><span
+                            style="white-space: nowrap;">{{ i }}</span></a>
+                    {% endfor %}
+                    {% endfor %}
+                
+                    <div class="owl-carousel mt-5 owl-carousel2 owl-loaded owl-drag">
+                        <div class="owl-stage-outer">
+                            <div class="owl-stage">
+                                {% for i in range(topics_videos_list|length) %}
+                                <div class="owl-item mb-5" style=" background-color: white;">
+                                    <div class="card shadow-lg" style="min-height: 225px;">
+                                        <div class="card-body p-2">
+                
+                                            <div class="row p-1">
+                
+                                                <div class="col-lg-5">
+                                                    <div class="text-left mb-3">
+                                                        <span
+                                                            class="badge ml-2 text-center badge-pill badge-primary text-center">{{ UN_videos_list[i] }}</span>
+                                                    </div>
+                
+                                                    <div class="text-center">
+                                                        <img src="../static/img/30100.jpg"
+                                                            style="height: 100%;border-radius: 8px;width: 100%;"
+                                                            class="img-fluid d-flex align-content-center" alt="...">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-7 text-left" style="margin-top: 2.5rem;">
+                                                    <h5 class="card-title" style="color: black;">
+                                                        <strong>{{ topics_videos_list[i] }}</strong></h5>
+                                                    <p class="card-text text-primary">By {{ author_videos_list[i] }}</p>
+                                                    <p class="text-muted">Uploaded On: {{ date_videos_list[i] }}
+                                                        {{ time_videos_list[i] }}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="card-body">
-                                    <h4 class="small font-weight-bold">Server Migration <span
-                                            class="float-right">20%</span></h4>
-                                    <div class="progress mb-4">
-                                        <div class="progress-bar bg-danger" role="progressbar" style="width: 20%"
-                                            aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <h4 class="small font-weight-bold">Sales Tracking <span
-                                            class="float-right">40%</span></h4>
-                                    <div class="progress mb-4">
-                                        <div class="progress-bar bg-warning" role="progressbar" style="width: 40%"
-                                            aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <h4 class="small font-weight-bold">Customer Database <span
-                                            class="float-right">60%</span></h4>
-                                    <div class="progress mb-4">
-                                        <div class="progress-bar" role="progressbar" style="width: 60%"
-                                            aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <h4 class="small font-weight-bold">Payout Details <span
-                                            class="float-right">80%</span></h4>
-                                    <div class="progress mb-4">
-                                        <div class="progress-bar bg-info" role="progressbar" style="width: 80%"
-                                            aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <h4 class="small font-weight-bold">Account Setup <span
-                                            class="float-right">Complete!</span></h4>
-                                    <div class="progress">
-                                        <div class="progress-bar bg-success" role="progressbar" style="width: 100%"
-                                            aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </div>
+                                {% endfor %}
                             </div>
-
-                            <!-- Color System -->
-                            <div class="row">
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-primary text-white shadow">
-                                        <div class="card-body">
-                                            Primary
-                                            <div class="text-white-50 small">#4e73df</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-success text-white shadow">
-                                        <div class="card-body">
-                                            Success
-                                            <div class="text-white-50 small">#1cc88a</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-info text-white shadow">
-                                        <div class="card-body">
-                                            Info
-                                            <div class="text-white-50 small">#36b9cc</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-warning text-white shadow">
-                                        <div class="card-body">
-                                            Warning
-                                            <div class="text-white-50 small">#f6c23e</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-danger text-white shadow">
-                                        <div class="card-body">
-                                            Danger
-                                            <div class="text-white-50 small">#e74a3b</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-secondary text-white shadow">
-                                        <div class="card-body">
-                                            Secondary
-                                            <div class="text-white-50 small">#858796</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="col-lg-6 mb-4">
-
-                            <!-- Illustrations -->
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Illustrations</h6>
-                                </div>
-                                <div class="card-body">
-                                    <div class="text-center">
-                                        <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"
-                                            src="img/undraw_posting_photo.svg" alt="">
-                                    </div>
-                                    <p>Add some quality, svg illustrations to your project courtesy of <a
-                                            target="_blank" rel="nofollow" href="https://undraw.co/">unDraw</a>, a
-                                        constantly updated collection of beautiful svg images that you can use
-                                        completely free and without attribution!</p>
-                                    <a target="_blank" rel="nofollow" href="https://undraw.co/">Browse Illustrations on
-                                        unDraw &rarr;</a>
-                                </div>
-                            </div>
-
-                            <!-- Approach -->
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Development Approach</h6>
-                                </div>
-                                <div class="card-body">
-                                    <p>SB Admin 2 makes extensive use of Bootstrap 4 utility classes in order to reduce
-                                        CSS bloat and poor page performance. Custom CSS classes are used to create
-                                        custom components and custom utility classes.</p>
-                                    <p class="mb-0">Before working with this theme, you should become familiar with the
-                                        Bootstrap framework, especially the utility classes.</p>
-                                </div>
-                            </div>
-
                         </div>
                     </div>
-
+                
                 </div>
                 <!-- /.container-fluid -->
 
@@ -918,7 +1024,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2019</span>
+                        <span>Copyright &copy; पाठशाला 2020</span>
                     </div>
                 </div>
             </footer>
@@ -949,7 +1055,7 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+                    <a class="btn btn-primary" href="/logout">Logout</a>
                 </div>
             </div>
         </div>

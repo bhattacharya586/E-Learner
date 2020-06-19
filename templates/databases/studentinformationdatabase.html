@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Dashboard</title>
+    <title>पाठशाला</title>
     <script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js') }}"></script>
     <script src="{{ url_for('static', filename='vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 
@@ -89,21 +89,21 @@
 
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-
+        
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/admin-dashboard">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3"><strong>GEU-Terminal</strong></div>
+                <div class="sidebar-brand-text mx-3"><strong>पाठशाला</strong></div>
             </a>
-
+        
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
-
+        
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="/admin-dashboard">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -130,8 +130,8 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseX"
-                        aria-expanded="true" aria-controls="collapseX">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseX" aria-expanded="true"
+                        aria-controls="collapseX">
                         <i class="fas fa-fw fa-video"></i>
                         <span>Video Content</span>
                     </a>
@@ -144,8 +144,8 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseY"
-                        aria-expanded="true" aria-controls="collapseY">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseY" aria-expanded="true"
+                        aria-controls="collapseY">
                         <i class="fas fa-fw fa-pen"></i>
                         <span>Assignments</span>
                     </a>
@@ -157,20 +157,22 @@
                         </div>
                     </div>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseZ"
-                        aria-expanded="true" aria-controls="collapseZ">
-                        <i class="fas fa-fw fa-user"></i>
-                        <span>Blogs</span>
-                    </a>
-                    <div id="collapseZ" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                        <div class="bg-white py-2 collapse-inner rounded">
-                            <h6 class="collapse-header">Blogs:</h6>
-                            <a class="collapse-item" href="/upload-blogs">Upload</a>
-                            <a class="collapse-item" href="cards.html">Edit</a>
-                        </div>
-                    </div>
-                </li>
+                <!--
+                                        <li class="nav-item">
+                                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseZ" aria-expanded="true"
+                                                aria-controls="collapseZ">
+                                                <i class="fas fa-fw fa-user"></i>
+                                                <span>Blogs</span>
+                                            </a>
+                                            <div id="collapseZ" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                                                <div class="bg-white py-2 collapse-inner rounded">
+                                                    <h6 class="collapse-header">Blogs:</h6>
+                                                    <a class="collapse-item" href="/upload-blogs">Upload</a>
+                                                    <a class="collapse-item" href="cards.html">Edit</a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    -->
             </div>
             <!-- Ending -->
             <!-- Heading -->
@@ -190,64 +192,66 @@
                         <i class="fas fa-fw fa-chart-area"></i>
                         <span>Assignments Visuals</span></a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="charts.html">
-                        <i class="fas fa-fw fa-chart-area"></i>
-                        <span>Job Visuals</span></a>
-                </li>
+                <!--
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="charts.html">
+                                                <i class="fas fa-fw fa-chart-area"></i>
+                                                <span>Job Visuals</span></a>
+                                        </li>
+                                        -->
             </div>
             <!-- Ending -->
             <!-- Heading -->
-            <hr class="sidebar-divider">
-            <div>
-                <div class="sidebar-heading">
-                    Projects
-                </div>
-                <!-- Nav Item - Pages Collapse Menu -->
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseA"
-                        aria-expanded="true" aria-controls="collapseA">
-                        <i class="fas fa-fw fa-sticky-note"></i>
-                        <span>Career</span>
-                    </a>
-                    <div id="collapseA" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                        <div class="bg-white py-2 collapse-inner rounded">
-                            <h6 class="collapse-header">Career</h6>
-                            <a class="collapse-item" href="buttons.html">Check Resume</a>
-                            <a class="collapse-item" href="cards.html">Interview Schedules</a>
-                        </div>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseB"
-                        aria-expanded="true" aria-controls="collapseB">
-                        <i class="fas fa-fw fa-video"></i>
-                        <span>Library</span>
-                    </a>
-                    <div id="collapseB" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                        <div class="bg-white py-2 collapse-inner rounded">
-                            <h6 class="collapse-header">Library:</h6>
-                            <a class="collapse-item" href="buttons.html">Edit e-books</a>
-                            <a class="collapse-item" href="cards.html">Library Record</a>
-                            <a class="collapse-item" href="cards.html">Upload New Books</a>
-                        </div>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseC"
-                        aria-expanded="true" aria-controls="collapseC">
-                        <i class="fas fa-fw fa-pen"></i>
-                        <span>Report Cards</span>
-                    </a>
-                    <div id="collapseC" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                        <div class="bg-white py-2 collapse-inner rounded">
-                            <h6 class="collapse-header">Report Cards:</h6>
-                            <a class="collapse-item" href="buttons.html">Of Recruits</a>
-                            <a class="collapse-item" href="cards.html">Of Students</a>
-                        </div>
-                    </div>
-                </li>
-            </div>
+            <!--
+                                    <div>
+                                        <div class="sidebar-heading">
+                                            Projects
+                                        </div>
+                                        <li class="nav-item">
+                                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseA" aria-expanded="true"
+                                                aria-controls="collapseA">
+                                                <i class="fas fa-fw fa-sticky-note"></i>
+                                                <span>Career</span>
+                                            </a>
+                                            <div id="collapseA" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                                                <div class="bg-white py-2 collapse-inner rounded">
+                                                    <h6 class="collapse-header">Career</h6>
+                                                    <a class="collapse-item" href="buttons.html">Check Resume</a>
+                                                    <a class="collapse-item" href="cards.html">Interview Schedules</a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseB" aria-expanded="true"
+                                                aria-controls="collapseB">
+                                                <i class="fas fa-fw fa-video"></i>
+                                                <span>Library</span>
+                                            </a>
+                                            <div id="collapseB" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                                                <div class="bg-white py-2 collapse-inner rounded">
+                                                    <h6 class="collapse-header">Library:</h6>
+                                                    <a class="collapse-item" href="buttons.html">Edit e-books</a>
+                                                    <a class="collapse-item" href="cards.html">Library Record</a>
+                                                    <a class="collapse-item" href="cards.html">Upload New Books</a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseC" aria-expanded="true"
+                                                aria-controls="collapseC">
+                                                <i class="fas fa-fw fa-pen"></i>
+                                                <span>Report Cards</span>
+                                            </a>
+                                            <div id="collapseC" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                                                <div class="bg-white py-2 collapse-inner rounded">
+                                                    <h6 class="collapse-header">Report Cards:</h6>
+                                                    <a class="collapse-item" href="buttons.html">Of Recruits</a>
+                                                    <a class="collapse-item" href="cards.html">Of Students</a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </div>
+                                    -->
             <!-- Ending -->
             <!-- Heading -->
             <hr class="sidebar-divider">
@@ -255,17 +259,17 @@
                 <div class="sidebar-heading">
                     Databases
                 </div>
-                <!-- Nav Item - Pages Collapse Menu -->
-                <li class="nav-item">
-                    <a class="nav-link" href="/opendatabase/studentperformancedatabase">
-                        <i class="fas fa-fw fa-chart-area"></i>
-                        <span>Students Performance</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/opendatabase/studentsassignmentdatabase">
-                        <i class="fas fa-fw fa-pen"></i>
-                        <span>Students Assignments</span></a>
-                </li>
+                <!-- Nav Item - Pages Collapse Menu 
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class="fas fa-fw fa-chart-area"></i>
+                                <span>Students Performance</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class="fas fa-fw fa-pen"></i>
+                                <span>Students Assignments</span></a>
+                        </li>-->
                 <li class="nav-item">
                     <a class="nav-link" href="/opendatabase/employersinformationdatabase">
                         <i class="fas fa-fw fa-users"></i>
@@ -276,16 +280,18 @@
                         <i class="fas fa-fw fa-users"></i>
                         <span>Student Information</span></a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/opendatabase/studentlogininformationdatabase">
-                        <i class="fas fa-fw fa-chart-area"></i>
-                        <span>Student Login Information</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/opendatabase/employerslogininformationdatabase">
-                        <i class="fas fa-fw fa-chart-area"></i>
-                        <span>Employers Login Information</span></a>
-                </li>
+                <!--
+                        <li class="nav-item">
+                            <a class="nav-link" href="/opendatabase/studentlogininformationdatabase">
+                                <i class="fas fa-fw fa-chart-area"></i>
+                                <span>Student Login Information</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/opendatabase/employerslogininformationdatabase">
+                                <i class="fas fa-fw fa-chart-area"></i>
+                                <span>Employers Login Information</span></a>
+                        </li>
+                        -->
                 <li class="nav-item">
                     <a class="nav-link" href="/opendatabase/videodatabase">
                         <i class="fas fa-fw fa-video"></i>
@@ -296,16 +302,18 @@
                         <i class="fas fa-fw fa-sticky-note"></i>
                         <span>Theory</span></a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/opendatabase/commentsdatabase">
-                        <i class="fas fa-fw fa-comment"></i>
-                        <span>Comments</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/opendatabase/whatsappdatabase">
-                        <i class="fab fa-fw fa-whatsapp"></i>
-                        <span>Whatsapp Messages</span></a>
-                </li>
+                <!--
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#">
+                                                <i class="fas fa-fw fa-comment"></i>
+                                                <span>Comments</span></a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#">
+                                                <i class="fab fa-fw fa-whatsapp"></i>
+                                                <span>Whatsapp Messages</span></a>
+                                        </li>
+                                        -->
             </div>
             <!-- Ending -->
             <!-- Heading -->
@@ -316,7 +324,7 @@
                 </div>
                 <!-- Nav Item - Pages Collapse Menu -->
                 <li class="nav-item">
-                    <a class="nav-link" href="/mails">
+                    <a class="nav-link" href="#">
                         <i class="fas fa-fw fa-envelope"></i>
                         <span>Mails</span></a>
                 </li>
@@ -325,18 +333,18 @@
                         <i class="fas fa-fw fa-phone"></i>
                         <span>Contact</span></a>
                 </li>
-
+        
             </div>
             <!-- Ending -->
-
+        
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
-
+        
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
-
+        
         </ul>
         <!-- End of Sidebar -->
 
@@ -589,7 +597,7 @@
                                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                             <thead>
                                                 <tr>
-                                                    <th>Username</th>
+                                                    
                                                     <th>Name</th>
                                                     <th>Father's Name</th>
                                                     <th>Mother's Name</th>
@@ -606,7 +614,6 @@
                                             </thead>
                                             <tfoot>
                                                 <tr>
-                                                    <th>Username</th>
                                                     <th>Name</th>
                                                     <th>Father's Name</th>
                                                     <th>Mother's Name</th>
@@ -624,19 +631,19 @@
                                             <tbody>
                                                 {% for key,value in data.items() %}
                                                 <tr>
-                                                    <td>{{ value["username"] }}</td>
-                                                    <td>{{ value["name"] }}</td>
-                                                    <td>{{ value["fname"] }}</td>
-                                                    <td>{{ value["mname"] }}</td>
-                                                    <td>{{ value["email"] }}</td>
-                                                    <td>{{ value["phone"] }}</td>
-                                                    <td>{{ value["class"] }}</td>
-                                                    <td>{{ value["section"] }}</td>
-                                                    <td>{{ value["class_roll_no"] }}</td>
-                                                    <td>{{ value["university_roll_no"] }}</td>
-                                                    <td>{{ value["security_question"] }}</td>
-                                                    <td>{{ value["10th_CGPA"] }}</td>
-                                                    <td>{{ value["12th_Percentage"] }}</td>
+                                                    
+                                                    <td><pre>{{ value["name"] }}</pre></td>
+                                                    <td><pre>{{ value["fname"] }}</pre></td>
+                                                    <td><pre>{{ value["mname"] }}</pre></td>
+                                                    <td><pre>{{ value["email"] }}</pre></td>
+                                                    <td><pre>{{ value["phone"] }}</pre></td>
+                                                    <td><pre>{{ value["class"] }}</pre></td>
+                                                    <td><pre>{{ value["section"] }}</pre></td>
+                                                    <td><pre>{{ value["class_roll_no"] }}</pre></td>
+                                                    <td><pre>{{ value["university_roll_no"] }}</pre></td>
+                                                    <td><pre>{{ value["security_question"] }}</pre></td>
+                                                    <td><pre>{{ value["10th_CGPA"] }}</pre></td>
+                                                    <td><pre>{{ value["12th_Percentage"] }}</pre></td>
                                                 </tr>
                                                 {% endfor %}
                                             </tbody>
@@ -657,7 +664,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2019</span>
+                        <span>Copyright &copy; पाठशाला 2020</span>
                     </div>
                 </div>
             </footer>

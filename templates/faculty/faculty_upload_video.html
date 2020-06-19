@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>पाठशाला</title>
+    <script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+
+    <!-- Custom fonts for this template-->
+    <link href="{{ url_for('static', filename='vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet"
+        type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+    <script type='text/javascript' src='http://code.jquery.com/jquery.min.js'></script>
+    <script type='text/javascript'>
+        $(function () {
+            $('#searchInput').keyup(function () {
+                if ($(this).val() == '') {
+                    $('.enableinInput').prop('disabled', true);
+                } else {
+                    //If there is text in the input, then enable the button
+                    $('.enableinInput').prop('disabled', false);
+                    $(function () {
+                        $('#enableinInput').keyup(function () {
+                            if ($(this).val() == '') {
+                                $('#qwerty').prop('disabled', true);
+                            } else {
+                                //If there is text in the input, then enable the button
+                                $('#qwerty').prop('disabled', false);
+
+                            }
+                        });
+                    });
+                }
+            });
+        });
+
+    </script>
+    
+    <!-- Custom styles for this template-->
+    <link href="{{ url_for('static', filename='css/sb-admin-2.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='owlcarousel/owl.theme.default.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='owlcarousel/owl.carousel.min.css') }}">
+    <script src="{{ url_for('static', filename='owlcarousel/owl.carousel.min.js') }}"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-app.js"></script>
+    <!-- Add additional services you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-messaging.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-functions.js"></script>
+    <!-- Comment out (or don't include) services you don't want to use -->
+    <script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-storage.js"></script>
+    <style>
+        
+
+        #qwerty {
+            display: none
+        }
+    
+        #qwerty {
+            border: 1px solid #ccc;
+            display: inline-block;
+            padding: 6px 12px;
+            cursor: pointer;
+        }
+
+    </style>
+    <script>
+        $(document).ready(function () {
+            $(".owl-carousel2").owlCarousel({
+                smartSpeed: 450,
+                loop: true,
+                margin: 10,
+                nav: false,
+                dots: false,
+                responsiveClass: true,
+                responsive: {
+                    0: {
+                        items: 1,
+                        nav: false
+                    },
+                    600: {
+                        items: 2,
+                        nav: false
+                    },
+                    1000: {
+                        items: 2,
+                        nav: false,
+                        loop: false
+                    }
+                }
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $(".owl-carousel").owlCarousel({
+                smartSpeed: 450,
+                loop: true,
+                margin: 10,
+                nav: false,
+                dots: false,
+                responsiveClass: true,
+                responsive: {
+                    0: {
+                        items: 1,
+                        nav: false
+                    },
+                    600: {
+                        items: 2,
+                        nav: false
+                    },
+                    1000: {
+                        items: 3,
+                        nav: false,
+                        loop: false
+                    }
+                }
+            });
+        });
+    </script>
+</head>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <ul class="navbar-nav bg-gradient-danger sidebar sidebar-dark accordion" id="accordionSidebar">
+        
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/faculty-home">
+                <div class="sidebar-brand-icon rotate-n-15">
+                    <i class="fas fa-laugh-wink"></i>
+                </div>
+                <div class="sidebar-brand-text mx-3"><strong>पाठशाला</strong></div>
+            </a>
+        
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+        
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item active">
+                <a class="nav-link" href="/faculty-home">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Dashboard</span></a>
+            </li>
+            <!-- Divider -->
+            <!-- Heading -->
+            <hr class="sidebar-divider">
+            <div>
+                <div class="sidebar-heading">
+                    Uploads
+                </div>
+                <!-- Nav Item - Pages Collapse Menu -->
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                        aria-expanded="true" aria-controls="collapseTwo">
+                        <i class="fas fa-fw fa-sticky-note"></i>
+                        <span>Theory Content</span>
+                    </a>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <h6 class="collapse-header">Theory Contents:</h6>
+                            <a class="collapse-item" href="/faculty_intermediate/theoryupload">Upload</a>
+        
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseX" aria-expanded="true"
+                        aria-controls="collapseX">
+                        <i class="fas fa-fw fa-video"></i>
+                        <span>Video Content</span>
+                    </a>
+                    <div id="collapseX" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <h6 class="collapse-header">Video Contents:</h6>
+                            <a class="collapse-item" href="/faculty_intermediate/videoupload">Upload</a>
+        
+                        </div>
+                    </div>
+                </li>
+                <!--
+                                        <li class="nav-item">
+                                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseZ" aria-expanded="true"
+                                                aria-controls="collapseZ">
+                                                <i class="fas fa-fw fa-user"></i>
+                                                <span>Blogs</span>
+                                            </a>
+                                            <div id="collapseZ" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                                                <div class="bg-white py-2 collapse-inner rounded">
+                                                    <h6 class="collapse-header">Blogs:</h6>
+                                                    <a class="collapse-item" href="/upload-blogs">Upload</a>
+                                                    <a class="collapse-item" href="cards.html">Edit</a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    -->
+            </div>
+            <!-- Ending -->
+            <!-- Heading -->
+            <hr class="sidebar-divider">
+            <div>
+                <div class="sidebar-heading">
+                    Graphs
+                </div>
+                <!-- Nav Item - Pages Collapse Menu -->
+                <li class="nav-item">
+                    <a class="nav-link" href="/faculty-visuals">
+                        <i class="fas fa-fw fa-chart-area"></i>
+                        <span>Performance Visuals</span></a>
+                </li>
+                <!--
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="charts.html">
+                                                <i class="fas fa-fw fa-chart-area"></i>
+                                                <span>Job Visuals</span></a>
+                                        </li>
+                                        -->
+            </div>
+            <!-- Ending -->
+            <!-- Heading -->
+            <!--
+                                    <div>
+                                        <div class="sidebar-heading">
+                                            Projects
+                                        </div>
+                                        <li class="nav-item">
+                                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseA" aria-expanded="true"
+                                                aria-controls="collapseA">
+                                                <i class="fas fa-fw fa-sticky-note"></i>
+                                                <span>Career</span>
+                                            </a>
+                                            <div id="collapseA" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                                                <div class="bg-white py-2 collapse-inner rounded">
+                                                    <h6 class="collapse-header">Career</h6>
+                                                    <a class="collapse-item" href="buttons.html">Check Resume</a>
+                                                    <a class="collapse-item" href="cards.html">Interview Schedules</a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseB" aria-expanded="true"
+                                                aria-controls="collapseB">
+                                                <i class="fas fa-fw fa-video"></i>
+                                                <span>Library</span>
+                                            </a>
+                                            <div id="collapseB" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                                                <div class="bg-white py-2 collapse-inner rounded">
+                                                    <h6 class="collapse-header">Library:</h6>
+                                                    <a class="collapse-item" href="buttons.html">Edit e-books</a>
+                                                    <a class="collapse-item" href="cards.html">Library Record</a>
+                                                    <a class="collapse-item" href="cards.html">Upload New Books</a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseC" aria-expanded="true"
+                                                aria-controls="collapseC">
+                                                <i class="fas fa-fw fa-pen"></i>
+                                                <span>Report Cards</span>
+                                            </a>
+                                            <div id="collapseC" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                                                <div class="bg-white py-2 collapse-inner rounded">
+                                                    <h6 class="collapse-header">Report Cards:</h6>
+                                                    <a class="collapse-item" href="buttons.html">Of Recruits</a>
+                                                    <a class="collapse-item" href="cards.html">Of Students</a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </div>
+                                    -->
+            <!-- Ending -->
+            <!-- Heading -->
+            <hr class="sidebar-divider">
+            <div>
+                <div class="sidebar-heading">
+                    Databases
+                </div>
+                <!-- Nav Item - Pages Collapse Menu 
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class="fas fa-fw fa-chart-area"></i>
+                                <span>Students Performance</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class="fas fa-fw fa-pen"></i>
+                                <span>Students Assignments</span></a>
+                        </li>-->
+        
+                <li class="nav-item">
+                    <a class="nav-link" href="/faculty_opendatabase/studentinformationdatabase">
+                        <i class="fas fa-fw fa-users"></i>
+                        <span>Student Information</span></a>
+                </li>
+                <!--
+                        <li class="nav-item">
+                            <a class="nav-link" href="/opendatabase/studentlogininformationdatabase">
+                                <i class="fas fa-fw fa-chart-area"></i>
+                                <span>Student Login Information</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/opendatabase/employerslogininformationdatabase">
+                                <i class="fas fa-fw fa-chart-area"></i>
+                                <span>Employers Login Information</span></a>
+                        </li>
+                        -->
+                <li class="nav-item">
+                    <a class="nav-link" href="/faculty_opendatabase/videodatabase">
+                        <i class="fas fa-fw fa-video"></i>
+                        <span>Videos</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/faculty_opendatabase/theorydatabase">
+                        <i class="fas fa-fw fa-sticky-note"></i>
+                        <span>Theory</span></a>
+                </li>
+                <!--
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#">
+                                                <i class="fas fa-fw fa-comment"></i>
+                                                <span>Comments</span></a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#">
+                                                <i class="fab fa-fw fa-whatsapp"></i>
+                                                <span>Whatsapp Messages</span></a>
+                                        </li>
+                                        -->
+            </div>
+            <!-- Ending -->
+            <!-- Heading -->
+            <hr class="sidebar-divider">
+            <div>
+                <div class="sidebar-heading">
+                    Mail and Contact
+                </div>
+                <!-- Nav Item - Pages Collapse Menu -->
+                <li class="nav-item">
+                    <a class="nav-link" href="/faculty_mails">
+                        <i class="fas fa-fw fa-envelope"></i>
+                        <span>Mails</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="fas fa-fw fa-phone"></i>
+                        <span>Contact</span></a>
+                </li>
+        
+            </div>
+            <!-- Ending -->
+        
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">
+        
+            <!-- Sidebar Toggler (Sidebar) -->
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
+        
+        </ul>
+        <!-- End of Sidebar -->
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+
+                    <!-- Topbar Search -->
+                    <form
+                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                        <div class="input-group">
+                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                                aria-label="Search" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <button class="btn btn-danger" type="button">
+                                    <i class="fas fa-search fa-sm"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <!-- Topbar Navbar -->
+                    <ul class="navbar-nav ml-auto">
+
+                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+                        <li class="nav-item dropdown no-arrow d-sm-none">
+                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-search fa-fw"></i>
+                            </a>
+                            <!-- Dropdown - Messages -->
+                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                                aria-labelledby="searchDropdown">
+                                <form class="form-inline mr-auto w-100 navbar-search">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control bg-light border-0 small"
+                                            placeholder="Search for..." aria-label="Search"
+                                            aria-describedby="basic-addon2">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-danger" type="button">
+                                                <i class="fas fa-search fa-sm"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </li>
+
+                        <!-- Nav Item - Alerts -->
+                        <li class="nav-item dropdown no-arrow mx-1">
+                            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-bell fa-fw"></i>
+                                <!-- Counter - Alerts -->
+                                <span class="badge badge-danger badge-counter">3+</span>
+                            </a>
+                            <!-- Dropdown - Alerts -->
+                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="alertsDropdown">
+                                <h6 class="dropdown-header">
+                                    Alerts Center
+                                </h6>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="mr-3">
+                                        <div class="icon-circle bg-danger">
+                                            <i class="fas fa-file-alt text-white"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="small text-gray-500">December 12, 2019</div>
+                                        <span class="font-weight-bold">A new monthly report is ready to download!</span>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="mr-3">
+                                        <div class="icon-circle bg-success">
+                                            <i class="fas fa-donate text-white"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="small text-gray-500">December 7, 2019</div>
+                                        $290.29 has been deposited into your account!
+                                    </div>
+                                </a>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="mr-3">
+                                        <div class="icon-circle bg-warning">
+                                            <i class="fas fa-exclamation-triangle text-white"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="small text-gray-500">December 2, 2019</div>
+                                        Spending Alert: We've noticed unusually high spending for your account.
+                                    </div>
+                                </a>
+                                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
+                            </div>
+                        </li>
+
+                        <!-- Nav Item - Messages -->
+                        <li class="nav-item dropdown no-arrow mx-1">
+                            <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-envelope fa-fw"></i>
+                                <!-- Counter - Messages -->
+                                <span class="badge badge-danger badge-counter">7</span>
+                            </a>
+                            <!-- Dropdown - Messages -->
+                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="messagesDropdown">
+                                <h6 class="dropdown-header">
+                                    Message Center
+                                </h6>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="dropdown-list-image mr-3">
+                                        <img class="rounded-circle" src="https://source.unsplash.com/fn_BT9fwg_E/60x60"
+                                            alt="">
+                                        <div class="status-indicator bg-success"></div>
+                                    </div>
+                                    <div class="font-weight-bold">
+                                        <div class="text-truncate">Hi there! I am wondering if you can help me with a
+                                            problem I've been having.</div>
+                                        <div class="small text-gray-500">Emily Fowler · 58m</div>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="dropdown-list-image mr-3">
+                                        <img class="rounded-circle" src="https://source.unsplash.com/AU4VPcFN4LE/60x60"
+                                            alt="">
+                                        <div class="status-indicator"></div>
+                                    </div>
+                                    <div>
+                                        <div class="text-truncate">I have the photos that you ordered last month, how
+                                            would you like them sent to you?</div>
+                                        <div class="small text-gray-500">Jae Chun · 1d</div>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="dropdown-list-image mr-3">
+                                        <img class="rounded-circle" src="https://source.unsplash.com/CS2uCrpNzJY/60x60"
+                                            alt="">
+                                        <div class="status-indicator bg-warning"></div>
+                                    </div>
+                                    <div>
+                                        <div class="text-truncate">Last month's report looks great, I am very happy with
+                                            the progress so far, keep up the good work!</div>
+                                        <div class="small text-gray-500">Morgan Alvarez · 2d</div>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="dropdown-list-image mr-3">
+                                        <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60"
+                                            alt="">
+                                        <div class="status-indicator bg-success"></div>
+                                    </div>
+                                    <div>
+                                        <div class="text-truncate">Am I a good boy? The reason I ask is because someone
+                                            told me that people say this to all dogs, even if they aren't good...</div>
+                                        <div class="small text-gray-500">Chicken the Dog · 2w</div>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
+                            </div>
+                        </li>
+
+                        <div class="topbar-divider d-none d-sm-block"></div>
+
+                        <!-- Nav Item - User Information -->
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ malik["email"] }}</span>
+                                <img class="img-profile rounded-circle"
+                                    src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
+                            </a>
+                            <!-- Dropdown - User Information -->
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Profile
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Settings
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Activity Log
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Logout
+                                </a>
+                            </div>
+                        </li>
+
+                    </ul>
+
+                </nav>
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">Admin</a></li>
+                            <li class="breadcrumb-item"><a href="#">Video Content</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Upload New Video</li>
+                        </ol>
+                    </nav>
+
+                   <div class="row mb-5">
+                       <div class="col-lg-8">
+                        <div class="card shadow">
+                            <div class="card-body">
+                                <div>
+                                    <p class="text-center" style="padding: 50px50px;">
+                                        <span><i class="fa fa-file-word-o" style="font-size:24px;color: royalblue;"></i></span>
+                                        <span><i class="fa fa-file-excel-o" style="font-size:35px;color: green;"></i></span>
+                                        <span><i class="fa fa-file-code-o" style="font-size:50px;color: palevioletred;"></i></span>
+                                        <span><i class="fa fa-file-pdf-o" style="font-size:35px;color: maroon;"></i></span>
+                                        <span><i class="fa fa-file-zip-o" style="font-size:24px;color: #3b8d99;"></i></span>
+                                    </p>
+                                    <h3 class="text-center" style="font-family: 'Do Hyeon', sans-serif;color: black;">
+                                        Upload the Video Content
+                                    </h3>
+                                    <div class="text-center">
+                                        <div class="text-center mt-3">
+                                            <form action="" method="POST">
+                                                <input type="hidden" name="subject" id="subject" value="{{ id }}">
+                                                <label for="basic-url">Enter the Unit Name of the Attachment</label>
+                                                <div class="input-group mb-3">
+                                                    <input type="text" class="form-control" id='searchInput'>
+                                                </div>
+                                                <label for="basic-url">Enter the Title of the Attachment</label>
+                                                <div class="input-group mb-3">
+                                                    <input type="text" disabled='disabled' class="form-control enableinInput" id="enableinInput">
+                                                </div>
+                                                <label for="file-upload" class="custom-file-upload">
+                                                    <i class="fa fa-cloud-upload"></i> Upload File
+                                                </label>
+                                                <input id="qwerty" class="file" type="file" name="mainimage" value="" onchange="getfile()" disabled='disabled'>
+                                            </form>
+                                            <script>
+                                                $('#qwerty').change(function () {
+                                                    var i = $(this).prev('label').clone();
+                                                    var file = $('#qwerty')[0].files[0].name;
+                                                    $(this).prev('label').text(file);
+                                                });
+
+                                            </script>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    
+                        </div>
+                       </div>
+                       <div class="col-lg-4">
+                            <div class="card shadow">
+                                <div class="card-body">
+
+                                </div>
+                            </div>
+                       </div>
+                   </div>
+                    <script>
+                        // Your web app's Firebase configuration
+                        var firebaseConfig = {
+                            apiKey: "AIzaSyDKEM_8Sy3DT_dw2BJSyqkGWcpOIZSo6Ks",
+                            authDomain: "elearner-4fd02.firebaseapp.com",
+                            databaseURL: "https://elearner-4fd02.firebaseio.com",
+                            projectId: "elearner-4fd02",
+                            storageBucket: "elearner-4fd02.appspot.com",
+                            messagingSenderId: "933344165579",
+                            appId: "1:933344165579:web:3f1137f53e8c971708e54e",
+                            measurementId: "G-QW0SBXKZ3D"
+                        };
+                        // Initialize Firebase
+                        firebase.initializeApp(firebaseConfig);
+                        var database = firebase.database();
+                        //Write Data
+
+                        function writeUserData(downloadURL, title, subject, unitname) {
+                            var today = new Date();
+                            var dd = String(today.getDate()).padStart(2, '0');
+                            var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+                            var mm = (months[today.getMonth()]);
+                            var yyyy = today.getFullYear();
+
+                            var td = mm + '-' + dd + '-' + yyyy;
+
+                            var hr = today.getHours();
+                            var min = today.getMinutes();
+                            var sec = today.getSeconds();
+                            if (min < 10) {
+                                min = "0" + min;
+                            }
+                            var time = hr + ":" + min + ":" + sec;
+                            firebase.database().ref('Videos/' + subject + "/" + title).set({
+                                Date: td,
+                                Time: time,
+                                Faculty_Id: "{{malik['faculty_id']}}",
+                                Title: title,
+                                URL: downloadURL,
+                                Unit_Name: unitname,
+                            });
+                        }
+                           /*
+                         /*Read Data
+                         var leadsRef = database.ref('users');
+                         leadsRef.on('value', function(snapshot) {
+                             snapshot.forEach(function(childSnapshot) {
+                             var childData = childSnapshot.val();
+                                 console.log(childData.username);
+                             });
+                         }); */
+
+                    </script>
+                    
+                    <script type="text/javascript">
+                        var selectedFile;
+                        function getfile() {
+                            var pic = document.getElementById("qwerty");
+                            var subject = document.getElementById("subject").value;
+                            var unitname = document.getElementById("searchInput").value;
+                            var title = document.getElementById("enableinInput").value;
+                            selectedFile = pic.files[0];
+                            //var linke = document.getElementById('header');
+                            //linke.style.display = 'none'; //or
+                            //var linkf = document.getElementById('hidebeta');
+                            //linkf.style.display = 'none'; //or
+                            //var link = document.getElementById('nav-ask');
+                            //link.style.display = 'block'; //or
+                            //var foot = document.getElementById('foot');
+                            //foot.style.display = 'none'; //or
+                            //var hidebeta = document.getElementById('hidebeta1');
+                            //hidebeta.style.display = 'none'; //or
+                            myfunction(subject, title, unitname);
+                        }
+                        function myfunction(subject, title, unitname) {
+                            var storageRef = firebase.storage().ref('/Videos/' + subject + '/' + title);
+                            var uploadTask = storageRef.put(selectedFile);
+                            uploadTask.on('state_changed', function (snapshot) {
+
+
+                            }, function (error) {
+                                console.log(error);
+                            }, function () {
+                                uploadTask.snapshot.ref.getDownloadURL().then(
+                                    function (downloadURL) {
+                                        console.log("Uploaded")
+                                        writeUserData(downloadURL, title, subject, unitname);
+                                        location.replace('/faculty_upload-video-handler/success')
+                                    });
+                            });
+                        }; 
+                    </script>
+
+
+                    <!--Carousel 2-->
+                    <div class="row mb-4">
+                        <div class="col-lg-12">
+                            <div class="owl-carousel owl-carousel2 owl-loaded owl-drag">
+                                <div class="owl-stage-outer">
+                                    <div class="owl-stage">
+                                        <div class="owl-item active" style=" background-color: white;">
+                                            <div class="card">
+                                                Anier
+                                            </div>
+                                        </div>
+                                        <div class="owl-item active" style=" background-color: white;">
+                                            <div class="card">
+                                                Anier
+                                            </div>
+                                        </div>
+                                        <div class="owl-item active" style=" background-color: white;">
+                                            <div class="card">
+                                                Anier
+                                            </div>
+                                        </div>
+                                        <div class="owl-item active" style=" background-color: white;">
+                                            <div class="card">
+                                                Anier
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; पाठशाला 2020</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="my_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Choose the Subject</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h3 class="text-center"><strong>Select The Semester and Course</strong></h3>
+                    <hr>
+                    <form>
+                        <div class="input-group">
+                            <select class="custom-select" id="inputGroupSelect04"
+                                aria-label="Example select with button addon" name="meal" id="meal"
+                                onChange="changecat(this.value);">
+                                <option value="" disabled selected>Select</option>
+                                <option value="Sem_1">Semester 1</option>
+                                <option value="Sem_2">Semester 2</option>
+                                <option value="Sem_3">Semester 3</option>
+                                <option value="Sem_4">Semester 4</option>
+                                <option value="Sem_5">Semester 5</option>
+                                <option value="Sem_6">Semester 6</option>
+                            </select>
+                        </div>
+    
+                    </form>
+                    <div class="container mt-2 mb-2 ">
+                        <div class="row" name="category" id="category">
+    
+                        </div>
+                    </div>
+    
+                    <script>
+
+                        var mealsByCategory = {
+                            Sem_1: ["Electronics Engg.",
+                                "Engg Maths 1",
+                                "Chemistry",
+                                "Introduction to C Programming",
+                                "Engg. Mechanics",
+                                "AutoCAD",
+                                "Professional Communication 1"],
+
+                            Sem_2: ["Electrical Engg.",
+                                "Engg Maths 2",
+                                "Physics",
+                                "Advanced C Programming",
+                                "Mechanical Engg.",
+                                "Professional Communication 2"],
+
+                            Sem_3: ["Introduction to C++",
+                                "Cloud Computing 1",
+                                "Discrete Maths",
+                                "Career Skills",
+                                "Logic Design"],
+
+                            Sem_4: ["Computer Organization",
+                                "CBNST",
+                                "Cloud Computing 2",
+                                "Career Skills",
+                                "JAVA Programming",
+                                "Finite Automata"],
+
+                            Sem_5: ["DBMS",
+                                "Operating System",
+                                "Career Skills",
+                                "Machine Learning",
+                                "Cloud Computing 3"],
+
+                            Sem_6: ["Computer Networks",
+                                "Compiler Design",
+                                "DevOps Cloud Computing 4",
+                                "Full Stack Web Development",
+                                "Design and Analysis of Algorithms",
+                                "Career Skills"]
+                        }
+
+                        function changecat(value) {
+                            console.log("Aniruddha : ", value);
+                            if (value.length == 0) document.getElementById("category").innerHTML = '<div class="col-lg-4">< div class="card" ></div></div>';
+                            else {
+                                var catOptions = "";
+                                var moocho = "";
+                                for (categoryId in mealsByCategory[value]) {
+
+                                    moocho = '<a href="/upload-theory/' + mealsByCategory[value][categoryId] + '"><div class="card shadow-sm" style="padding:10px 10px;margin:5px;"><p class="text-center"><strong>' + mealsByCategory[value][categoryId] + '</strong></p></div></a>';
+
+                                    catOptions += '<div class="col-lg-4">' + moocho + '</div>';
+                                    console.log(catOptions);
+                                }
+                                document.getElementById("category").innerHTML = catOptions;
+                            }
+                        }
+                    </script>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <!--<a class="btn btn-primary" href="login.html">Logout</a>-->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript-->
+
+    <script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
+    <!-- Core plugin JavaScript-->
+
+
+    <!-- Custom scripts for all pages-->
+    <script src="{{ url_for('static', filename='js/sb-admin-2.min.js') }}"></script>
+
+    <!-- Page level plugins -->
+    <script src="{{ url_for('static', filename='vendor/chart.js/Chart.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendor/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="{{ url_for('static', filename='js/demo/datatables-demo.js') }}"></script>
+    <!-- Page level custom scripts -->
+    <script src="{{ url_for('static', filename='js/demo/chart-area-demo.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/demo/chart-pie-demo.js') }}"></script>
+
+</body>
+
+</html>

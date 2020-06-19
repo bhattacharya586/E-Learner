@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Dashboard</title>
+    <title>पाठशाला</title>
     <link
         href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Amaranth:wght@700&family=Bree+Serif&family=Bungee&family=Do+Hyeon&display=swap"
         rel="stylesheet">
@@ -39,6 +39,7 @@
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/monokai-sublime.min.css" />
 
     <link rel="stylesheet" href="//cdn.quilljs.com/1.3.6/quill.snow.css" />
+    
     <script>
         $(document).ready(function () {
             $(".owl-carousel2").owlCarousel({
@@ -54,7 +55,7 @@
                         nav: false
                     },
                     600: {
-                        items: 2,
+                        items: 1,
                         nav: false
                     },
                     1000: {
@@ -97,6 +98,9 @@
         #snow-container {
             height: 350px;
         }
+        .bg-gradient-black{
+            background-color: black;
+        }
     </style>
 </head>
 
@@ -106,22 +110,22 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-
+        <ul class="navbar-nav bg-gradient-black sidebar sidebar-dark accordion" id="accordionSidebar">
+        
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/student-home">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3"><strong>GEU-Terminal</strong></div>
+                <div class="sidebar-brand-text mx-3"><strong>पाठशाला</strong></div>
             </a>
-
+        
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
-
+        
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="/student-home">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -134,89 +138,28 @@
                 </div>
                 <!-- Nav Item - Pages Collapse Menu -->
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="/read-graph">
                         <i class="fas fa-fw fa-envelope"></i>
                         <span>Test Analysis</span></a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <i class="fas fa-fw fa-envelope"></i>
-                        <span>Assignment Marks Analysis</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <i class="fas fa-fw fa-envelope"></i>
-                        <span>Theory Completed</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <i class="fas fa-fw fa-envelope"></i>
-                        <span>Video Completed</span></a>
-                </li>
-            </div>
-            <!-- Ending -->
-            <!-- Heading -->
-            <hr class="sidebar-divider">
-            <div>
-                <div class="sidebar-heading">
-                    Assessments
-                </div>
-                <!-- Nav Item - Pages Collapse Menu -->
-                <li class="nav-item">
-                    <a class="nav-link" href="charts.html">
-                        <i class="fas fa-fw fa-chart-area"></i>
-                        <span>Compiler Design Tests</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="charts.html">
-                        <i class="fas fa-fw fa-chart-area"></i>
-                        <span>Computer Network Tests</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="charts.html">
-                        <i class="fas fa-fw fa-chart-area"></i>
-                        <span>Full Stack Development Tests</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="charts.html">
-                        <i class="fas fa-fw fa-chart-area"></i>
-                        <span>DevOps Tests</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="charts.html">
-                        <i class="fas fa-fw fa-chart-area"></i>
-                        <span>DAA Tests</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="charts.html">
-                        <i class="fas fa-fw fa-chart-area"></i>
-                        <span>Career Skills Tests</span></a>
-                </li>
-            </div>
-            <!-- Ending -->
-            <!-- Heading -->
-            <hr class="sidebar-divider">
-            <div>
-                <div class="sidebar-heading">
-                    Information
-                </div>
-                <!-- Nav Item - Pages Collapse Menu -->
-                <li class="nav-item">
-                    <a class="nav-link" href="charts.html">
-                        <i class="fas fa-fw fa-chart-area"></i>
-                        <span>Attendance</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="charts.html">
-                        <i class="fas fa-fw fa-chart-area"></i>
-                        <span>Fee Details</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="charts.html">
-                        <i class="fas fa-fw fa-chart-area"></i>
-                        <span>Report Cards</span></a>
-                </li>
-                
+        
+                <!--
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#">
+                                                <i class="fas fa-fw fa-envelope"></i>
+                                                <span>Assignment Marks Analysis</span></a>
+                                        </li>
+                                        
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#">
+                                                <i class="fas fa-fw fa-envelope"></i>
+                                                <span>Theory Completed</span></a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#">
+                                                <i class="fas fa-fw fa-envelope"></i>
+                                                <span>Video Completed</span></a>
+                                        </li>-->
             </div>
             <!-- Ending -->
             <!-- Heading -->
@@ -227,42 +170,84 @@
                 </div>
                 <!-- Nav Item - Pages Collapse Menu -->
                 <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
-                        aria-controls="collapseTwo">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                        aria-expanded="true" aria-controls="collapseTwo">
                         <i class="fas fa-fw fa-sticky-note"></i>
                         <span>Theory Contents</span>
                     </a>
                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
                             <h6 class="collapse-header">Theory Contents:</h6>
-                            <a class="collapse-item" href="#">Compiler Design Theory</a>
-                            <a class="collapse-item" href="#">Computer Network Theory</a>
-                            <a class="collapse-item" href="#">Full Stack Development Theory</a>
-                            <a class="collapse-item" href="#">DevOps Theory</a>
-                            <a class="collapse-item" href="#">DAA Theory</a>
-                            <a class="collapse-item" href="#">Career Skills Theory</a>
+                            {% for k in info %}
+                            {% for i,j in k.items() %}
+                            <a class="collapse-item" href="/student-theory/{{ i }}">{{ i }}</a>
+                            {% endfor %}
+                            {% endfor %}
                         </div>
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
-                        aria-controls="collapseTwo">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo2"
+                        aria-expanded="true" aria-controls="collapseTwo2">
                         <i class="fas fa-fw fa-sticky-note"></i>
                         <span>Video Contents</span>
                     </a>
-                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div id="collapseTwo2" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
                             <h6 class="collapse-header">Video Contents:</h6>
-                            <a class="collapse-item" href="#">Compiler Design Video</a>
-                            <a class="collapse-item" href="#">Computer Network Video</a>
-                            <a class="collapse-item" href="#">Full Stack Development Videos</a>
-                            <a class="collapse-item" href="#">DevOps Videos</a>
-                            <a class="collapse-item" href="#">DAA Videos</a>
-                            <a class="collapse-item" href="#">Career Skills Videos</a>
+                            {% for k in info %}
+                            {% for i,j in k.items() %}
+                            <a class="collapse-item" href="/student-video/{{ i }}">{{ i }}</a>
+                            {% endfor %}
+                            {% endfor %}
                         </div>
                     </div>
                 </li>
             </div>
+            <hr class="sidebar-divider">
+            <div>
+                <div class="sidebar-heading">
+                    Assessments and Tests
+                </div>
+                <!-- Nav Item - Pages Collapse Menu -->
+        
+                {% for k in info %}
+                {% for i,j in k.items() %}
+                <li class="nav-item">
+                    <a class="nav-link" href="/student-tests/{{i}}">
+                        <i class="fas fa-fw fa-chart-area"></i>
+                        <span>{{ i }} Tests</span></a>
+                </li>
+                {% endfor %}
+                {% endfor %}
+            </div>
+            <!-- Ending -->
+            <!-- Heading 
+                                    <hr class="sidebar-divider">
+                                    <div>
+                                        <div class="sidebar-heading">
+                                            Information
+                                        </div>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="charts.html">
+                                                <i class="fas fa-fw fa-chart-area"></i>
+                                                <span>Attendance</span></a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="charts.html">
+                                                <i class="fas fa-fw fa-chart-area"></i>
+                                                <span>Fee Details</span></a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="charts.html">
+                                                <i class="fas fa-fw fa-chart-area"></i>
+                                                <span>Report Cards</span></a>
+                                        </li>
+                                        
+                                    </div>-->
+            <!-- Ending -->
+            <!-- Heading -->
+        
             <!-- Ending -->
             <!-- Heading -->
             <hr class="sidebar-divider">
@@ -270,34 +255,34 @@
                 <div class="sidebar-heading">
                     Blogs and Contact
                 </div>
-                <!-- Nav Item - Pages Collapse Menu -->
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <i class="fas fa-fw fa-envelope"></i>
-                        <span>Blogs</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <i class="fas fa-fw fa-phone"></i>
-                        <span>Corona Update</span></a>
-                </li>
+                <!-- Nav Item - Pages Collapse Menu 
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/student-blog">
+                                                <i class="fas fa-fw fa-envelope"></i>
+                                                <span>Blogs</span></a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#">
+                                                <i class="fas fa-fw fa-phone"></i>
+                                                <span>Corona Update</span></a>
+                                        </li>-->
                 <li class="nav-item">
                     <a class="nav-link" href="#">
                         <i class="fas fa-fw fa-phone"></i>
                         <span>Contacts</span></a>
                 </li>
-
+        
             </div>
             <!-- Ending -->
-
+        
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
-
+        
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
-
+        
         </ul>
         <!-- End of Sidebar -->
 
@@ -322,7 +307,7 @@
                             <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
                                 aria-label="Search" aria-describedby="basic-addon2">
                             <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
+                                <button class="btn btn-dark" type="button">
                                     <i class="fas fa-search fa-sm"></i>
                                 </button>
                             </div>
@@ -347,7 +332,7 @@
                                             placeholder="Search for..." aria-label="Search"
                                             aria-describedby="basic-addon2">
                                         <div class="input-group-append">
-                                            <button class="btn btn-primary" type="button">
+                                            <button class="btn btn-dark" type="button">
                                                 <i class="fas fa-search fa-sm"></i>
                                             </button>
                                         </div>
@@ -372,7 +357,7 @@
                                 </h6>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="mr-3">
-                                        <div class="icon-circle bg-primary">
+                                        <div class="icon-circle bg-dark">
                                             <i class="fas fa-file-alt text-white"></i>
                                         </div>
                                     </div>
@@ -479,7 +464,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ class_email }}</span>
                                 <img class="img-profile rounded-circle"
                                     src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
                             </a>
@@ -499,8 +484,8 @@
                                     Activity Log
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                <a class="dropdown-item" href="/logoutstudent">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400" ></i>
                                     Logout
                                 </a>
                             </div>
@@ -512,375 +497,128 @@
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
-                <div class="container-fluid">
 
-                    <div class="row mt-5">
-                        <div class="col-lg-9">
-                            <div class="card shadow" style="padding: 15px;border-radius: 25px;">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-lg-8">
-                                            <h3 class="text-left">Your Profile</h3><br>
-                                            <p class="text-justify text-dark"><strong>Hi Kate.</strong>You have
-                                                completed 70% of your
-                                                weekly targets. Keep learning with us like this.</p>
-                                            <button type="button" class="btn btn-warning badge-pill">Set Goals</button>
-                                        </div>
-                                        <div class="col-lg-4">
-                                            <img src="https://www.seekpng.com/png/detail/73-730530_user-support-services-computer-user-vector-icon.png"
-                                                class="img-fluid">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row mt-5">
-                                <div class="col-lg-6">
-                                    <h3 class="text-left">Your Theory</h3>
-                                </div>
-                                <div class="col-lg-6">
-                                    <a href="#" style="float:right;" class="text-right">View More</a>
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="row mt-5">
-                                <div class="owl-carousel owl-loaded owl-drag">
-                                    <div class="owl-stage-outer">
-                                        <div class="owl-stage">
-                                            <div class="owl-item active" style=" background-color: white;">
-                                                <div class="">
-                                                    <div class="card shadow" style="background-color: white;">
-                                                        <div class="card-body">
-                                                            <h5 class="text-center">Compiler Design</h5>
-                                                            <p style="font-size: 10px;" class="text-muted text-center">
-                                                                Theory, Videos,
-                                                                Assignment
-                                                            </p>
-                                                            <div class="text-center d-flex justify-content-center">
-                                                                <img src="" height="50" width="50" style="width: 50%;"
-                                                                    class="">
-                                                            </div>
-                                                            <div class="progress mt-3">
-                                                                <div class="progress-bar" role="progressbar"
-                                                                    style="width: 25%;" aria-valuenow="25"
-                                                                    aria-valuemin="0" aria-valuemax="100">25%</div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            {% for i in range(0,5) %}
-                                            <div class="owl-item" style=" background-color: white;">
-                                                <div class="">
-                                                    <div class="card shadow" style="background-color: white;">
-                                                        <div class="card-body">
-                                                            <h5 class="text-center">Compiler Design</h5>
-                                                            <p style="font-size: 10px;" class="text-muted text-center">
-                                                                Theory, Videos,
-                                                                Assignment
-                                                            </p>
-                                                            <div class="text-center d-flex justify-content-center">
-                                                                <img src="" height="50" width="50" style="width: 50%;"
-                                                                    class="text-center">
-                                                            </div>
-                                                            <div class="progress mt-3">
-                                                                <div class="progress-bar" role="progressbar"
-                                                                    style="width: 25%;" aria-valuenow="25"
-                                                                    aria-valuemin="0" aria-valuemax="100">25%</div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            {% endfor %}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row mt-5">
-                                <div class="col-lg-6">
-                                    <h3 class="text-left">Your Videos</h3>
-                                </div>
-                                <div class="col-lg-6">
-                                    <a href="#" style="float:right;" class="text-right">View More</a>
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="row mt-5">
-                                <div class="owl-carousel owl-loaded owl-drag">
-                                    <div class="owl-stage-outer">
-                                        <div class="owl-stage">
-                                            <div class="owl-item active" style=" background-color: white;">
-                                                <div class="">
-                                                    <div class="card shadow" style="background-color: white;">
-                                                        <div class="card-body">
-                                                            <h5 class="text-center">Compiler Design</h5>
-                                                            <p style="font-size: 10px;" class="text-muted text-center">
-                                                                Theory, Videos,
-                                                                Assignment</p>
-                                                            <div class="text-center d-flex justify-content-center">
-                                                                <img src="" height="50" width="50" style="width: 50%;"
-                                                                    class="">
-                                                            </div>
-                                                            <div class="progress mt-3">
-                                                                <div class="progress-bar" role="progressbar"
-                                                                    style="width: 25%;" aria-valuenow="25"
-                                                                    aria-valuemin="0" aria-valuemax="100">25%</div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            {% for i in range(0,5) %}
-                                            <div class="owl-item" style=" background-color: white;">
-                                                <div class="">
-                                                    <div class="card shadow" style="background-color: white;">
-                                                        <div class="card-body">
-                                                            <h5 class="text-center">Compiler Design</h5>
-                                                            <p style="font-size: 10px;" class="text-muted text-center">
-                                                                Theory, Videos,
-                                                                Assignment</p>
-                                                            <div class="text-center d-flex justify-content-center">
-                                                                <img src="" height="50" width="50" style="width: 50%;"
-                                                                    class="text-center">
-                                                            </div>
-                                                            <div class="progress mt-3">
-                                                                <div class="progress-bar" role="progressbar"
-                                                                    style="width: 25%;" aria-valuenow="25"
-                                                                    aria-valuemin="0" aria-valuemax="100">25%</div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            {% endfor %}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row mt-5">
-                                <div class="col-lg-6">
-                                    <h3 class="text-left">Your Videos</h3>
-                                </div>
-                                <div class="col-lg-6">
-                                    <a href="#" style="float:right;" class="text-right">View More</a>
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="row mt-5">
-                                <div class="owl-carousel owl-loaded owl-drag">
-                                    <div class="owl-stage-outer">
-                                        <div class="owl-stage">
-                                            <div class="owl-item active" style=" background-color: white;">
-                                                <div class="">
-                                                    <div class="card shadow" style="background-color: white;">
-                                                        <div class="card-body">
-                                                            <h5 class="text-center">Compiler Design</h5>
-                                                            <p style="font-size: 10px;" class="text-muted text-center">
-                                                                Theory, Videos,
-                                                                Assignment</p>
-                                                            <div class="text-center d-flex justify-content-center">
-                                                                <img src="" height="50" width="50" style="width: 50%;"
-                                                                    class="">
-                                                            </div>
-                                                            <div class="progress mt-3">
-                                                                <div class="progress-bar" role="progressbar"
-                                                                    style="width: 25%;" aria-valuenow="25"
-                                                                    aria-valuemin="0" aria-valuemax="100">25%</div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            {% for i in range(0,5) %}
-                                            <div class="owl-item" style=" background-color: white;">
-                                                <div class="">
-                                                    <div class="card shadow" style="background-color: white;">
-                                                        <div class="card-body">
-                                                            <h5 class="text-center">Compiler Design</h5>
-                                                            <p style="font-size: 10px;" class="text-muted text-center">
-                                                                Theory, Videos,
-                                                                Assignment</p>
-                                                            <div class="text-center d-flex justify-content-center">
-                                                                <img src="" height="50" width="50" style="width: 50%;"
-                                                                    class="text-center">
-                                                            </div>
-                                                            <div class="progress mt-3">
-                                                                <div class="progress-bar" role="progressbar"
-                                                                    style="width: 25%;" aria-valuenow="25"
-                                                                    aria-valuemin="0" aria-valuemax="100">25%</div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            {% endfor %}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3">
-                            <h3 class="text-center">Weekly HomeWork</h3>
-                            <hr>
-                            <div class="card p-2" style="border-left: 5px solid royalblue;">
-                                <span class="text-justify">Upload Assignments</span>
-                            </div>
-                            <div class="card p-2" style="border-left: 5px solid yellow;">
-                                <span class="text-justify">Upload Assignments</span>
-                            </div>
-                            <div class="card p-2" style="border-left: 5px solid greenyellow;">
-                                <span class="text-justify">Upload Assignments</span>
-                            </div>
-                            <div class="card p-2" style="border-left: 5px solid maroon;">
-                                <span class="text-justify">Upload Assignments</span>
-                            </div>
-                            <div class="card p-2" style="border-left: 5px solid orange;">
-                                <span class="text-justify">Upload Assignments</span>
-                            </div>
-                            <a href="#" style="float: right;" class="text-right">View More</a>
+                <marquee style="color: red;" attribute_name="attribute_value" ....more attributes>
+                    {% for i in range(10) %}
+                        One or more lines or text message or image
+                    {% endfor %}
+                </marquee>
 
-                            <h3 class="text-center mt-5">Notices</h3>
-                            <hr>
-                            {% for i in range(0,5) %}
-                            <div class="card p-2" style="border-left: 5px solid royalblue;">
-                                <span class="text-justify">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                    Harum quo quam
-                                    fugiat eum quis aperiam, eos iusto assumenda, iure, minima commodi. Sed eaque velit
-                                    repellat
-                                    voluptates atque aut non quam.</span>
-                            </div>
-                            {% endfor %}
-                            <a href="#" style="float: right;" class="text-right">View More</a>
-                        </div>
-                    </div>
-                    <div class="row mt-5">
-                        <div class="col-md-12 animate-box fadeInLeft animated" data-animate-effect="fadeInLeft">
-                            <div class="hire" style="background: #f9bf3f!important;">
-                                <h2>I am happy to know you <br>that 300+ projects done sucessfully!</h2>
-                                <a href="#" class="btn-hire">Hire me</a>
+                <div class="container-fluid text-center">
+                    <h3 class="text-left" style="color: black;"><strong>Hot Topics: Theory</strong></h3>
+                    {% for k in info %}
+                        {% for i,j in k.items() %}
+                        <a href="/student-theory/{{ i }}" class="btn mr-1 mb-2" style="background-color: white;width: 15%;"><span style="white-space: nowrap;">{{ i }}</span></a>
+                        {% endfor %}
+                    {% endfor %}
+
+                    <div class="owl-carousel mt-5 owl-carousel2 owl-loaded owl-drag">
+                        <div class="owl-stage-outer">
+                            <div class="owl-stage">
+                                {% for i in range(topics_theory_list|length) %}
+                                <div class="owl-item mb-5" style=" background-color: white;">
+                                    <div class="card shadow-lg" style="min-height: 225px;">
+                                        <div class="card-body p-2">
+                                            
+                                            <div class="row p-1">
+                                                
+                                                <div class="col-lg-5">
+                                                    <div class="text-left mb-3">
+                                                        <span class="badge ml-2 text-center badge-pill badge-primary text-center">{{ UN_theory_list[i] }}</span>
+                                                    </div>
+                                                    
+                                                    <div class="text-center">
+                                                        <img src="../static/img/30100.jpg" style="height: 100%;border-radius: 8px;width: 100%;" class="img-fluid d-flex align-content-center" alt="...">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-7 text-left" style="margin-top: 2.5rem;">
+                                                    <h5 class="card-title" style="color: black;"><strong>{{ topics_theory_list[i] }}</strong></h5>
+                                                    <p class="card-text text-primary">By {{ author_theory_list[i] }}</p>
+                                                    <p class="text-muted">Uploaded On: {{ date_theory_list[i] }} {{ time_theory_list[i] }}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
                             </div>
                         </div>
                     </div>
-                    <div class="row mt-5">
-                        <div class="col-lg-4">
-                            <div class="card shadow">
-                                <div class="row no-gutters">
-                                    <div class="col-md-12">
-                                        <div class="card-body">
-                                            <span class="badge badge-pill badge-primary">Primary</span>
-                                            <h6 class="text-left"><strong>The 20 Biggest Fintech Companies In America
-                                                    2019</strong></h6>
-                                            <p class="card-text"><small class="text-muted">Last updated 3 mins
-                                                    ago</small></p>
+                    
+                    <h3 class="text-left" style="color: black;"><strong>Your Classmates: {{ mysection }}</strong></h3>
+                    <div class="owl-carousel mt-5 owl-loaded owl-drag">
+                        <div class="owl-stage-outer">
+                            <div class="owl-stage">
+                                {% for i in range(classmates|length) %}
+                                <div class="owl-item mb-5" style=" background-color: white;">
+                                    {% if i%4 == 0 %}
+                                        <div class="card shadow-lg" style="border-left: 8px solid blueviolet;">
+                                    {% elif i%4 == 1 %}
+                                        <div class="card shadow-lg" style="border-left: 8px solid brown;">
+                                    {% elif i%4 == 2 %}
+                                        <div class="card shadow-lg" style="border-left: 8px solid tomato;">
+                                    {% elif i%4 == 3 %}
+                                        <div class="card shadow-lg" style="border-left: 8px solid green;">
+                                    {% endif %}
+                                        <div class="card-body p-2">
+                                            <img src="https://cdn4.iconfinder.com/data/icons/web-ui-color/128/Account-512.png" style="height: 50px;width: auto;" class="d-flex align-content-center;">
+                                            <p class="text-right text-primary"><strong>{{ classmates[i][0] }}</strong></p>
+                                            <p class="text-right text-info"><strong>Roll No. : {{ classmates[i][1] }}</strong></p>
+                                            <p class="text-right text-primary"><strong>URollNo. : {{ classmates[i][2] }}</strong></p>
                                         </div>
                                     </div>
                                 </div>
+                                {% endfor %}
                             </div>
                         </div>
-                        <div class="col-lg-4">
-                            <div class="card shadow">
-                                <div class="row no-gutters">
-                                    <div class="col-md-12">
-                                        <div class="card-body">
-                                            <span class="badge badge-pill badge-primary">Primary</span>
-                                            <h6 class="text-left"><strong>The 20 Biggest Fintech Companies In America
-                                                    2019</strong></h6>
-                                            <p class="card-text"><small class="text-muted">Last updated 3 mins
-                                                    ago</small></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        <h3 class="text-left" style="color: black;"><strong>Hot Topics: Video</strong></h3>
+                        {% for k in info %}
+                        {% for i,j in k.items() %}
+                        <a href="/student-video/{{ i }}" class="btn mr-1 mb-2" style="background-color: white;width: 15%;"><span
+                                style="white-space: nowrap;">{{ i }}</span></a>
+                        {% endfor %}
+                        {% endfor %}
+                        
                         </div>
-                        <div class="col-lg-4">
-                            <div class="card shadow">
-                                <div class="row no-gutters">
-                                    <div class="col-md-12">
-                                        <div class="card-body">
-                                            <span class="badge badge-pill badge-primary">Primary</span>
-                                            <h6 class="text-left"><strong>The 20 Biggest Fintech Companies In America
-                                                    2019</strong></h6>
-                                            <p class="card-text"><small class="text-muted">Last updated 3 mins
-                                                    ago</small></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
-                    <div class="row mt-5">
-                        <div class="col-lg-4">
-                            <div class="card shadow">
-                                <div class="row no-gutters">
-                                    <div class="col-md-12">
-                                        <div class="card-body">
-                                            <span class="badge badge-pill badge-primary">Primary</span>
-                                            <h6 class="text-left"><strong>The 20 Biggest Fintech Companies In America
-                                                    2019</strong></h6>
-                                            <p class="card-text"><small class="text-muted">Last updated 3 mins
-                                                    ago</small></p>
+                    <div class="owl-carousel mt-5 owl-carousel2 owl-loaded owl-drag">
+                        <div class="owl-stage-outer">
+                            <div class="owl-stage">
+                                {% for i in range(topics_videos_list|length) %}
+                                <div class="owl-item mb-5" style=" background-color: white;">
+                                    <div class="card shadow-lg" style="min-height: 225px;">
+                                        <div class="card-body p-2">
+                    
+                                            <div class="row p-1">
+                    
+                                                <div class="col-lg-5">
+                                                    <div class="text-left mb-3">
+                                                        <span
+                                                            class="badge ml-2 text-center badge-pill badge-primary text-center">{{ UN_videos_list[i] }}</span>
+                                                    </div>
+                    
+                                                    <div class="text-center">
+                                                        <img src="../static/img/30100.jpg"
+                                                            style="height: 100%;border-radius: 8px;width: 100%;"
+                                                            class="img-fluid d-flex align-content-center" alt="...">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-7 text-left" style="margin-top: 2.5rem;">
+                                                    <h5 class="card-title" style="color: black;">
+                                                        <strong>{{ topics_videos_list[i] }}</strong></h5>
+                                                    <p class="card-text text-primary">By {{ author_videos_list[i] }}</p>
+                                                    <p class="text-muted">Uploaded On: {{ date_videos_list[i] }} {{ time_videos_list[i] }}
+                                                    </p>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="card shadow">
-                                <div class="row no-gutters">
-                                    <div class="col-md-12">
-                                        <div class="card-body">
-                                            <span class="badge badge-pill badge-primary">Primary</span>
-                                            <h6 class="text-left"><strong>The 20 Biggest Fintech Companies In America
-                                                    2019</strong></h6>
-                                            <p class="card-text"><small class="text-muted">Last updated 3 mins
-                                                    ago</small></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="card shadow">
-                                <div class="row no-gutters">
-                                    <div class="col-md-12">
-                                        <div class="card-body">
-                                            <span class="badge badge-pill badge-primary">Primary</span>
-                                            <h6 class="text-left"><strong>The 20 Biggest Fintech Companies In America
-                                                    2019</strong></h6>
-                                            <p class="card-text"><small class="text-muted">Last updated 3 mins
-                                                    ago</small></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                                {% endfor %}
+                            
                     </div>
-                    <!--Assignments-->
 
-                    <!--End Assignments-->
-                    <!--
-                    <div class="row mt-5">
-                        <div class="col-md-12 animate-box fadeInLeft animated" data-animate-effect="fadeInLeft">
-                            <div class="hire" style="background: #f9bf3f!important;">
-                                <h2>I am happy to know you <br>that 300+ projects done sucessfully!</h2>
-                                <a href="#" class="btn-hire">Hire me</a>
-                            </div>
-                        </div>
-                    </div>-->
-                    <!--Assignments-->
-                    <div class="row mt-5">
-                        <div class="col-lg-9">
-
-                        </div>
-
-                    </div>
-                    <!--End Assignments-->
-                    <div class="row mt-5">
-                        <div class="col-lg-9">
-
-                        </div>
-
-                    </div>
                 </div>
                 <!-- /.container-fluid -->
 
@@ -891,12 +629,20 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2019</span>
+                        <span>Copyright &copy; पाठशाला 2020</span>
                     </div>
                 </div>
             </footer>
             <!-- End of Footer -->
 
+        
+        
+        
+        
+        
+        
+        
+        
         </div>
         <!-- End of Content Wrapper -->
 
