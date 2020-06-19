@@ -76,6 +76,56 @@ Firebase is a mobile and web application development platform developed by Fireb
 
 A Cloud Based Storage and Cloud based Database is provided by Google which is free of Cost. The Firebase database resembles the AWS RDS and the Firebase Storage resembles the AWS S3 Services.
 
+<code>
+  <script>
+    var firebaseConfig = {
+                            apiKey: "AIzaSyDKEM_8Sy3DT_dw2BJSyqkGWcpOIZSo6Ks",
+                            authDomain: "elearner-4fd02.firebaseapp.com",
+                            databaseURL: "https://elearner-4fd02.firebaseio.com",
+                            projectId: "elearner-4fd02",
+                            storageBucket: "elearner-4fd02.appspot.com",
+                            messagingSenderId: "933344165579",
+                            appId: "1:933344165579:web:3f1137f53e8c971708e54e",
+                            measurementId: "G-QW0SBXKZ3D"
+                        };
+                        
+   firebase.initializeApp(firebaseConfig);
+   var database = firebase.database();
+
+   function writeUserData(downloadURL, title, subject, unitname) {
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+        var mm = (months[today.getMonth()]);
+        var yyyy = today.getFullYear();
+        var td = mm + '-' + dd + '-' + yyyy;
+
+        var hr = today.getHours();
+        var min = today.getMinutes();
+        var sec = today.getSeconds();
+        if (min < 10) {
+            min = "0" + min;
+        }
+        var time = hr + ":" + min + ":" + sec;
+        firebase.database().ref('Videos/' + subject + "/" + title).set({
+            Date: td,
+            Time: time,
+            Faculty_Id: "GEF-123456",
+            Title: title,
+            URL: downloadURL,
+            Unit_Name: unitname,
+         });
+     }
+     
+     var leadsRef = database.ref('users');
+     leadsRef.on('value', function(snapshot) {
+     snapshot.forEach(function(childSnapshot) {
+     var childData = childSnapshot.val();
+     console.log(childData.username);
+     });
+  });
+  </script>
+  </code>
 # AWS EC2, Load Balancing
 
   <b>Amazon EC2</b>: Secure and resizable compute capacity in the cloud. Launch applications when needed without upfront commitments. Amazon Elastic Compute Cloud (Amazon EC2) is a web service that provides secure, resizable compute capacity in the cloud. It is designed to make web-scale cloud computing easier for developers. Amazon EC2’s simple web service interface allows you to obtain and configure capacity with minimal friction. It provides you with complete control of your computing resources and lets you run on Amazon’s proven computing environment.
