@@ -77,22 +77,23 @@ Firebase is a mobile and web application development platform developed by Fireb
 A Cloud Based Storage and Cloud based Database is provided by Google which is free of Cost. The Firebase database resembles the AWS RDS and the Firebase Storage resembles the AWS S3 Services.
 
 <code>
-  <script>
-    var firebaseConfig = {
-                            apiKey: "AIzaSyDKEM_8Sy3DT_dw2BJSyqkGWcpOIZSo6Ks",
-                            authDomain: "elearner-4fd02.firebaseapp.com",
-                            databaseURL: "https://elearner-4fd02.firebaseio.com",
-                            projectId: "elearner-4fd02",
-                            storageBucket: "elearner-4fd02.appspot.com",
-                            messagingSenderId: "933344165579",
-                            appId: "1:933344165579:web:3f1137f53e8c971708e54e",
-                            measurementId: "G-QW0SBXKZ3D"
-                        };
+  
+      <script>
+        var firebaseConfig = {
+                                apiKey: "AIzaSyDKEM_8Sy3DT_dw2BJSyqkGWcpOIZSo6Ks",
+                                authDomain: "elearner-4fd02.firebaseapp.com",
+                                databaseURL: "https://elearner-4fd02.firebaseio.com",
+                                projectId: "elearner-4fd02",
+                                storageBucket: "elearner-4fd02.appspot.com",
+                                messagingSenderId: "933344165579",
+                                appId: "1:933344165579:web:3f1137f53e8c971708e54e",
+                                measurementId: "G-QW0SBXKZ3D"
+                            };
                         
-   firebase.initializeApp(firebaseConfig);
-   var database = firebase.database();
+    firebase.initializeApp(firebaseConfig);
+    var database = firebase.database();
 
-   function writeUserData(downloadURL, title, subject, unitname) {
+    function writeUserData(downloadURL, title, subject, unitname) {
         var today = new Date();
         var dd = String(today.getDate()).padStart(2, '0');
         var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
@@ -138,7 +139,62 @@ A Cloud Based Storage and Cloud based Database is provided by Google which is fr
 # WSGI Server
   The Web Server Gateway Interface is a simple calling convention for web servers to forward requests to web applications or frameworks written in the Python programming language. The current version of WSGI, version 1.0.1, is specified in Python Enhancement Proposal 3333.
   
+Setting Up Environment in AWS EC2.
+<code>
+  
+    sudo apt-get update
+    sudo apt-get install python3-pip
+    pip3 install virtualenv
+    mkdir flaskproject
+    cd flaskproject
+    virtualenv venv
+    . venv/bin/activate
+    pip install Flask
+    vi app.py or upload your code using filezilla
+    sudo apt-get install apache2 libapache2-mod-wsgi-py3
+    vi app.wsgi
+    activate_this = '/home/ubuntu/flaskproject/venv/bin/activate_this.py'
+    with open(activate_this) as f:
+      exec(f.read(), dict(__file__=activate_this))
+
+    import sys
+    import logging
+
+    logging.basicConfig(stream=sys.stderr)
+    sys.path.insert(0,"/var/www/html/flaskproject/")
+
+    from app import app as application
+    
+    sudo ln -sT ~/flaskproject /var/www/html/flaskproject
+    sudo a2enmod wsgi
+    sudo vi /etc/apache2/sites-enabled/000-default.conf
+    In DocumentRoot /var/www/html
+    WSGIDaemonProcess flaskproject threads=5
+    WSGIScriptAlias / /var/www/html/flaskproject/app.wsgi
+
+    <Directory flaskproject>
+      WSGIProcessGroup flaskproject
+      WSGIApplicationGroup %{GLOBAL}
+      Order deny,allow
+      Allow from all
+    </Directory>
+  
+    sudo apachectl restart
+    error logs in vi /var/log/apache2/error.log
+    
+    Congrats Flask WebSite Hosted...
+    
+</code>
+
 # GitBash and Git
   Git is a set of command line utility programs that are designed to execute on a Unix style command-line environment. Modern operating systems like Linux and macOS both include built-in Unix command line terminals. This makes Linux and macOS complementary operating systems when working with Git. Microsoft Windows instead uses Windows command prompt, a non-Unix terminal environment.
+  
+  <code>
+  
+        Connect to my Instance in Command Line
+        ssh -i "mini_project_college.pem" ubuntu@ec2-54-208-198-63.compute-1.amazonaws.com
+        
+  </code>
+  
 # FileZilla
   FileZilla is a free software, cross-platform FTP application, consisting of FileZilla Client and FileZilla Server. Client binaries are available for Windows, Linux, and macOS, server binaries are available for Windows only. Simply it is used to establish a FTP connection to our AMI.
